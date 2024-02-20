@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,19 @@ namespace MonkeSwap_Desktop.View
         public HomeView()
         {
             InitializeComponent();
+
+            string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM test_users", connection);
+
+            connection.Open();
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            connection.Close();
+
+            dtGrid.DataContext = dt;
         }
     }
 }
