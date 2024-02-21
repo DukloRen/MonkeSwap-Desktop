@@ -161,9 +161,8 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0">
-
-
                     </TextBox>
+                    
                     <TextBlock Text="Password"
                                Foreground="DarkGray"
                                FontSize="12"
@@ -184,8 +183,6 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0">
-
-
                     </PasswordBox>
 
                     <Button x:Name="btnLogin"

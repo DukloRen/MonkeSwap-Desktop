@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="White">
+             Background="Red">
     <Grid>
-        
+        <Image Source="/Images/monki.jpg" Width="100" Height="100"/>
     </Grid>
 </UserControl>

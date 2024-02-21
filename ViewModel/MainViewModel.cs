@@ -11,7 +11,7 @@ namespace MonkeSwap_Desktop.ViewModel
     public class MainViewModel : ViewModelBase
     {
         //Fields
-        
+
         private ViewModelBase _currentChildView;
         private string _caption;
         private IconChar _icon;
@@ -24,7 +24,7 @@ namespace MonkeSwap_Desktop.ViewModel
             }
             set
             {
-                _currentChildView=value;
+                _currentChildView = value;
                 OnPropertyChanged(nameof(CurrentChildView));
             }
         }
@@ -61,6 +61,25 @@ namespace MonkeSwap_Desktop.ViewModel
         {
 
             //Initialize commands
+            ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
+            ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+
+            //Default view
+            ExecuteShowHomeViewCommand(null);
+        }
+
+        private void ExecuteShowCustomerViewCommand(object obj)
+        {
+            CurrentChildView = new CustomerViewModel();
+            Caption = "Customers";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowHomeViewCommand(object obj)
+        {
+            CurrentChildView = new HomeViewModel();
+            Caption = "Dashboard";
+            Icon = IconChar.Home;
         }
     }
 }
