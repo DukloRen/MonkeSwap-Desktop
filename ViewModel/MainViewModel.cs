@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MonkeSwap_Desktop.ViewModel
@@ -54,32 +55,58 @@ namespace MonkeSwap_Desktop.ViewModel
         }
 
         //--> Commands
-        public ICommand ShowHomeViewCommand { get;}
-        public ICommand ShowCustomerViewCommand { get;}
+        public ICommand ShowDatabaseViewCommand { get;}
+        public ICommand ShowUsersViewCommand { get;}
+        public ICommand ShowSettingsViewCommand { get; }
+        public ICommand ShowItemsViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
 
         public MainViewModel()
         {
 
             //Initialize commands
-            ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
-            ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
+            ShowDatabaseViewCommand = new ViewModelCommand(ExecuteShowDatabaseViewCommand);
+            ShowUsersViewCommand = new ViewModelCommand(ExecuteShowUsersViewCommand);
+            ShowItemsViewCommand = new ViewModelCommand(ExecuteShowItemsViewCommand);
+            ShowProfileViewCommand = new ViewModelCommand(ExecuteShowProfileViewCommand);
+            ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
 
             //Default view
-            ExecuteShowHomeViewCommand(null);
+            ExecuteShowDatabaseViewCommand(null);
+        }
+        private void ExecuteShowDatabaseViewCommand(object obj)
+        {
+            CurrentChildView = new DatabaseViewModel();
+            Caption = "Database";
+            Icon = IconChar.Database;
         }
 
-        private void ExecuteShowCustomerViewCommand(object obj)
+        private void ExecuteShowUsersViewCommand(object obj)
         {
-            CurrentChildView = new CustomerViewModel();
-            Caption = "Customers";
+            CurrentChildView = new UsersViewModel();
+            Caption = "Users";
             Icon = IconChar.UserGroup;
         }
 
-        private void ExecuteShowHomeViewCommand(object obj)
+        private void ExecuteShowItemsViewCommand(object obj)
         {
-            CurrentChildView = new HomeViewModel();
-            Caption = "Dashboard";
-            Icon = IconChar.Home;
+            CurrentChildView = new ItemsViewModel();
+            Caption = "Items";
+            Icon = IconChar.Book;
+        }
+
+        private void ExecuteShowProfileViewCommand(object obj)
+        {
+            CurrentChildView = new ProfileViewModel();
+            Caption = "Profile";
+            Icon = IconChar.UserAlt;
+        }
+
+        private void ExecuteShowSettingsViewCommand(object obj)
+        {
+            CurrentChildView = new SettingsViewModel();
+            Caption = "Settings";
+            Icon = IconChar.Tools;
         }
     }
 }

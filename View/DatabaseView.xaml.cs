@@ -18,14 +18,14 @@ using System.Windows.Shapes;
 namespace MonkeSwap_Desktop.View
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for DatabaseView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class DatabaseView : UserControl
     {
-        public HomeView()
+        public DatabaseView()
         {
             InitializeComponent();
-
+           
             string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -38,6 +38,8 @@ namespace MonkeSwap_Desktop.View
             connection.Close();
 
             dtGrid.DataContext = dt;
+            dtGrid2.DataContext = dt;
+            
         }
     }
 }
