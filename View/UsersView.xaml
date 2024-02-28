@@ -66,9 +66,68 @@
             </Grid>
             
             <!--Users Datagrid-->
-            <DataGrid Grid.Row="1">
-                
+
+            <DataGrid Style="{DynamicResource DataGridStyle1}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                      Grid.Row="1"
+                      x:Name="usersDataGrid">
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+
+                    <DataGridCheckBoxColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"/>
+
+                    <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border Width="25"
+                                            Height="25"
+                                            CornerRadius="50"
+                                            Margin="0,0,10,0"
+                                            Background="Red">
+                                        <TextBlock Text="..."
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Foreground="White"
+                                                   Margin="0,0,0,1"/>
+                                    </Border>
+
+                                    <TextBlock Text="..." VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                    <DataGridCheckBoxColumn Header="Username" IsReadOnly="True" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Email" IsReadOnly="True" Width="*"/>
+                    <DataGridCheckBoxColumn Header="Trades Completed" IsReadOnly="True" Width="*"/>
+
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button>
+                                        <fa:IconImage Icon="Pencil"/>
+                                    </Button>
+                                    <Button>
+                                        <fa:IconImage Icon="Pencil"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
             </DataGrid>
+            
             <!--Pagination Section-->
             <!--
             <Border Grid.Row="1"
