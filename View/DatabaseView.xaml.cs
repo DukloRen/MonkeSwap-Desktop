@@ -26,7 +26,7 @@ namespace MonkeSwap_Desktop.View
         {
             InitializeComponent();
            
-            string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
+            /*string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
 
             MySqlConnection connection = new MySqlConnection(connectionString);
 
@@ -38,7 +38,7 @@ namespace MonkeSwap_Desktop.View
             connection.Close();
 
             dtGrid.DataContext = dt;
-            dtGrid2.DataContext = dt;
+            dtGrid2.DataContext = dt;*/
             
         }
     }

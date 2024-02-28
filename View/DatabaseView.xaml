@@ -18,7 +18,7 @@
         <TextBox Text="Users Table"
                  IsReadOnly="True"
                  IsHitTestVisible="False"
-                 Foreground="Red"
+                 Foreground="{StaticResource titleColor2}"
                  FontSize="18"
                  FontFamily="Montserrat"
                  FontWeight="Medium"
@@ -26,7 +26,9 @@
                  VerticalContentAlignment="Center"
                  HorizontalContentAlignment="Center"
                  Width="300"
-                 Grid.Row="0"/>
+                 Grid.Row="0"
+                 Background="Transparent"
+                 BorderBrush="Transparent"/>
         <StackPanel Grid.Row="1">
             <DataGrid ItemsSource="{Binding}"
                       Name="dtGrid"
@@ -41,7 +43,7 @@
         <TextBox Text="Items Table"
                  IsReadOnly="True"
                  IsHitTestVisible="False"
-                 Foreground="Red"
+                 Foreground="{StaticResource titleColor2}"
                  FontSize="18"
                  FontFamily="Montserrat"
                  FontWeight="Medium"
@@ -49,6 +51,8 @@
                  VerticalContentAlignment="Top"
                  HorizontalContentAlignment="Center"
                  Width="300"
-                 Grid.Row="2"/>
+                 Grid.Row="2"
+                 Background="Transparent"
+                 BorderBrush="Transparent"/>
     </Grid>
 </UserControl>

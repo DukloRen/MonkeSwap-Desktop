@@ -134,31 +134,6 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <!--
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color5}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Box" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Stock" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Wallet" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Financial" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color7}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="PieChart" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Report" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton> -->
-
                 </StackPanel>
                 
             </Border>
@@ -219,7 +194,7 @@
                     </StackPanel>
 
                     <!--Header / Caption-->
-                    <Grid Grid.Row="1" Margin="-2,5,2,633" Grid.RowSpan="2">
+                    <Grid Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -251,13 +226,13 @@
                                     Margin="0,0,10,0">
 
                             <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color1}">
+                                    Tag="{StaticResource color4}">
                                 <fa:IconImage Icon="AngleDown"
                                               Height="12" Width="12"
                                               Style="{StaticResource iconButtonIcon}"/>
                             </Button>
 
-                                                        <!--Nincs megírva!!!!!-->
+                                                        <!--Not coded!!!!!-->
                             <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
