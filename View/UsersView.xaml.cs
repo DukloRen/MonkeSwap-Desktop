@@ -25,6 +25,18 @@ namespace MonkeSwap_Desktop.View
         public UsersView()
         {
             InitializeComponent();
+            string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
+
+            MySqlConnection connection = new MySqlConnection(connectionString);
+
+            MySqlCommand cmd = new MySqlCommand("SELECT * FROM test_users", connection);
+
+            connection.Open();
+            DataTable dt = new DataTable();
+            dt.Load(cmd.ExecuteReader());
+            connection.Close();
+
+            dtGrid.DataContext = dt;
         }
     }
 }

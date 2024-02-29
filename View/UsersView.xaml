@@ -72,7 +72,8 @@
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       Grid.Row="1"
-                      x:Name="usersDataGrid">
+                      x:Name="dtGrid"
+                      ItemsSource="{Binding}">
                 <DataGrid.Columns>
                     <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
                         <DataGridCheckBoxColumn.HeaderTemplate>
@@ -114,11 +115,11 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button>
-                                        <fa:IconImage Icon="Pencil"/>
+                                    <Button Style="{StaticResource gridEditButton}">
+                                        <fa:IconImage Icon="Pencil" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button>
-                                        <fa:IconImage Icon="Pencil"/>
+                                    <Button Style="{StaticResource gridRemoveButton}">
+                                        <fa:IconImage Icon="DeleteLeft" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
