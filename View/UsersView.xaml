@@ -18,34 +18,24 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"/>
-                <RowDefinition Height="560"/>
+                <RowDefinition Height="550"/>
             </Grid.RowDefinitions>
-           
-            <!--Tab Buttons-->
-            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,10,0,0" VerticalAlignment="Top">
-                <Button Content="ID" Style="{StaticResource tabButton}" BorderBrush="#784ff2"/>
-                <Button Content="Username" Style="{StaticResource tabButton}"/>
-                <Button Content="Email" Style="{StaticResource tabButton}"/>
-                <Button Content="Trades Completed" Style="{StaticResource tabButton}"/>
-                <Button Content="Date of Registration" Style="{StaticResource tabButton}"/>
-                <Button Content="Role" Style="{StaticResource tabButton}"/>
-            </StackPanel>
 
             <TextBlock Text="Filter by"
-                       Grid.Row="1"
+                       Grid.Row="0"
                        FontSize="13"
                        FontWeight="SemiBold"
                        Margin="0,0,215,0"
                        Foreground="#121518"
                        HorizontalAlignment="Right"
-                       VerticalAlignment="Top"/>
+                       VerticalAlignment="Center"/>
             
             <!--Filter Textbox-->
             <Grid Width="200" Height="45"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Top"
-                  Grid.Row="1">
-               <TextBlock Margin="20,0,0,10"
+                  Grid.Row="0">
+                <TextBlock Margin="20,0,0,10"
                           VerticalAlignment="Center"
                           Foreground="#b0b9c6"
                           IsHitTestVisible="False"
@@ -66,50 +56,31 @@
             </Grid>
             
             <!--Users Datagrid-->
-
             <DataGrid Style="{DynamicResource DataGridStyle1}"
                       CellStyle="{DynamicResource DataGridCellStyle1}"
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       Grid.Row="1"
                       x:Name="dtGrid"
-                      ItemsSource="{Binding}">
+                      ItemsSource="{Binding}"
+                      HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox/>
+                                <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
 
-                    <DataGridCheckBoxColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-
-                    <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Border Width="25"
-                                            Height="25"
-                                            CornerRadius="50"
-                                            Margin="0,0,10,0"
-                                            Background="Red">
-                                        <TextBlock Text="..."
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   Foreground="White"
-                                                   Margin="0,0,0,1"/>
-                                    </Border>
-
-                                    <TextBlock Text="..." VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    
-                    <DataGridCheckBoxColumn Header="Username" IsReadOnly="True" Width="*"/>
-                    <DataGridCheckBoxColumn Header="Email" IsReadOnly="True" Width="*"/>
-                    <DataGridCheckBoxColumn Header="Trades Completed" IsReadOnly="True" Width="*"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}"/>
+                    <!--Foreground="{StaticResource color9}"-->
+                    <!--TextElement.FontWeight="Bold"-->                    
+                    <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>
+                    <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
+                    <DataGridTextColumn Header="TC" IsReadOnly="True" Width="*" Binding="{Binding TC}"/>
+                    <DataGridTextColumn Header="DOR" IsReadOnly="True" Width="*" Binding="{Binding DOR}"/>
+                    <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding Role}"/>
 
                     <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
@@ -118,7 +89,7 @@
                                     <Button Style="{StaticResource gridEditButton}">
                                         <fa:IconImage Icon="Pencil" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}">
+                                    <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0">
                                         <fa:IconImage Icon="DeleteLeft" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>
@@ -128,32 +99,6 @@
 
                 </DataGrid.Columns>
             </DataGrid>
-            
-            <!--Pagination Section-->
-            <!--
-            <Border Grid.Row="1"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    BorderBrush="#dee4ec"
-                    BorderThickness="1"
-                    CornerRadius="5"
-                    Padding="5"
-                    Background="White"
-                    Margin="0,10,10,10">
-                <StackPanel Orientation="Horizontal">
-
-                    <Button Style="{StaticResource pagingButton}">
-                        <fa:IconImage Icon="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
-                    </Button>
-
-                    <Rectangle Width="1" Fill="#dee4ec" Margin="3,7"/>
-                    
-                    <Button
-                    
-                </StackPanel>
-            </Border>
-            -->
-
         </Grid>
     </Grid>
 </UserControl>
