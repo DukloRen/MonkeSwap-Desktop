@@ -62,12 +62,12 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       Grid.Row="1"
                       x:Name="dtGrid"
-                      ItemsSource="{Binding Users}"
+                      ItemsSource="{Binding}"
                       HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
                     
 
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}" HeaderStyle="{DynamicResource ColumnHeaderStyle1}"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}"/>
                     <!--Foreground="{StaticResource color9}"-->
                     <!--TextElement.FontWeight="Bold"-->                    
                     <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>

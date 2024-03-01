@@ -15,6 +15,12 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
 using Application = System.Windows.Application;
+using System.Diagnostics;
+using System.Globalization;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json;
+using MySqlX.XDevAPI.Common;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -23,10 +29,7 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class LoginView : Window
     {
-
-        MySqlConnection connection = new MySqlConnection("server=localhost;userid=root;password=;database=testdb");
-        MySqlCommand command;
-        MySqlDataReader mdr;
+        public static string baseURL = "http://localhost:8080/";
 
         public LoginView()
         {
@@ -51,34 +54,28 @@ namespace MonkeSwap_Desktop.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(txtUser.Text) || string.IsNullOrEmpty(txtPass.Password))
+            using (var client = new HttpClient())
             {
-                MessageBox.Show("Please input Username and Password", "Error");
-            }
 
-            else
-            {
-                connection.Open();
-                string selectQuery = "SELECT * FROM test_users WHERE name = '" + txtUser.Text + "' AND password = '" + txtPass.Password + "';";
-                command = new MySqlCommand(selectQuery, connection);
-                mdr = command.ExecuteReader();
-                if (mdr.Read())
+
+                try
                 {
-                    MessageBox.Show("Login Successful!");
-                    this.Hide();
+                    client.BaseAddress = new Uri(baseURL);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password=txtPass.Password});
+                    var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                    var response = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+
                     MainView main = new MainView();
                     main.ShowDialog();
-                    this.Close();
-
                 }
-                else
+                catch (Exception ex)
                 {
-
-                    MessageBox.Show("Incorrect Login Information! Try again.");
+                    txtUser.Text = ex.Message;                    
                 }
-
-                connection.Close();
             }
         }
     }
-}
+  }

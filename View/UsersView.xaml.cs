@@ -28,7 +28,7 @@ namespace MonkeSwap_Desktop.View
         public UsersView()
         {
             InitializeComponent();
-        /*
+        
         var converter = new BrushConverter();
         ObservableCollection<User> users = new ObservableCollection<User>();
 
@@ -50,20 +50,6 @@ namespace MonkeSwap_Desktop.View
         users.Add(new User {Id = 15, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
 
         dtGrid.ItemsSource = users;
-        */
-
-        /*string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
-
-        MySqlConnection connection = new MySqlConnection(connectionString);
-
-        MySqlCommand cmd = new MySqlCommand("SELECT * FROM test_users", connection);
-
-        connection.Open();
-        DataTable dt = new DataTable();
-        dt.Load(cmd.ExecuteReader());
-        connection.Close();
-
-        dtGrid.DataContext = dt;*/
        }
     }
     public class User
