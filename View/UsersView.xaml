@@ -62,18 +62,12 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       Grid.Row="1"
                       x:Name="dtGrid"
-                      ItemsSource="{Binding}"
+                      ItemsSource="{Binding Users}"
                       HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                        <DataGridCheckBoxColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                            </DataTemplate>
-                        </DataGridCheckBoxColumn.HeaderTemplate>
-                    </DataGridCheckBoxColumn>
+                    
 
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}" HeaderStyle="{DynamicResource ColumnHeaderStyle1}"/>
                     <!--Foreground="{StaticResource color9}"-->
                     <!--TextElement.FontWeight="Bold"-->                    
                     <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>
@@ -87,7 +81,7 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Style="{StaticResource gridEditButton}">
-                                        <fa:IconImage Icon="Pencil" Style="{StaticResource gridButtonIcon}"/>
+                                        <fa:IconImage Icon="Exchange" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                     <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0">
                                         <fa:IconImage Icon="DeleteLeft" Style="{StaticResource gridButtonIcon}"/>

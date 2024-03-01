@@ -1,7 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MonkeSwap_Desktop.ViewModel;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -26,42 +28,43 @@ namespace MonkeSwap_Desktop.View
         public UsersView()
         {
             InitializeComponent();
+        /*
+        var converter = new BrushConverter();
+        ObservableCollection<User> users = new ObservableCollection<User>();
 
-            var converter = new BrushConverter();
-            ObservableCollection<User> users = new ObservableCollection<User>();
+        //Create DataGrid Items
+        users.Add(new User {Id = 1, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
+        users.Add(new User { Id = 2, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
+        users.Add(new User {Id = 3, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
+        users.Add(new User {Id = 4, Username= "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
+        users.Add(new User {Id = 5, Username= "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
+        users.Add(new User {Id = 6, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
+        users.Add(new User {Id = 7, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
+        users.Add(new User {Id = 8, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
+        users.Add(new User {Id = 9, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
+        users.Add(new User {Id = 10, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
+        users.Add(new User {Id = 11, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
+        users.Add(new User {Id = 12, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
+        users.Add(new User {Id = 13, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
+        users.Add(new User {Id = 14, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
+        users.Add(new User {Id = 15, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
 
-            //Create DataGrid Items
-            users.Add(new User { Username= "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-            users.Add(new User { Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-            users.Add(new User { Username= "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-            users.Add(new User { Username= "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-            users.Add(new User { Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-            users.Add(new User { Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-            users.Add(new User { Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
+        dtGrid.ItemsSource = users;
+        */
 
-            dtGrid.ItemsSource = users;
-            
-            /*string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
+        /*string connectionString = "SERVER=localhost;DATABASE=testdb;UID=root;PASSWORD=;";
 
-            MySqlConnection connection = new MySqlConnection(connectionString);
+        MySqlConnection connection = new MySqlConnection(connectionString);
 
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM test_users", connection);
+        MySqlCommand cmd = new MySqlCommand("SELECT * FROM test_users", connection);
 
-            connection.Open();
-            DataTable dt = new DataTable();
-            dt.Load(cmd.ExecuteReader());
-            connection.Close();
+        connection.Open();
+        DataTable dt = new DataTable();
+        dt.Load(cmd.ExecuteReader());
+        connection.Close();
 
-            dtGrid.DataContext = dt;*/
-        }
+        dtGrid.DataContext = dt;*/
+       }
     }
     public class User
     {

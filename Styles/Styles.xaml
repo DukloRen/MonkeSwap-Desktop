@@ -483,6 +483,10 @@
         </Setter>
     </Style>
 
+    <!--Datagrid Header Style-->
+    <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
+        <Setter Property="FontSize" Value="15"/>
+    </Style>
     <!--Paging Buttons-->
     <!--
     <Style x:Key="pagingButton" TargetType="Button">

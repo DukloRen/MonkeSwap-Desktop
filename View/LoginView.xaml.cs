@@ -23,6 +23,7 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class LoginView : Window
     {
+
         MySqlConnection connection = new MySqlConnection("server=localhost;userid=root;password=;database=testdb");
         MySqlCommand command;
         MySqlDataReader mdr;
