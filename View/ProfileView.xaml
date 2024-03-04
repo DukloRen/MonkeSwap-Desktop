@@ -6,8 +6,11 @@
              xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Cyan">
+             Background="White">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>   
     </Grid>
 </UserControl>

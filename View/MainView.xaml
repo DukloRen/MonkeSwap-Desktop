@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
         xmlns:viewModel="clr-namespace:MonkeSwap_Desktop.ViewModel"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" d:DataContext="{d:DesignInstance Type=viewModel:DatabaseViewModel}"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        d:DataContext="{d:DesignInstance Type=viewModel:UsersViewModel}"
         mc:Ignorable="d"
         Title="MainWindowView" Height="700" Width="1300"
         WindowStartupLocation="CenterScreen"
@@ -88,6 +89,7 @@
                     </StackPanel>
                     
                     <!--Menu Buttons-->
+                    <!--
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color4}"
                                  IsChecked="True"
@@ -97,10 +99,12 @@
                             <TextBlock Text="Database" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    -->
+                    
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowUsersViewCommand}">
+                                 Tag="{StaticResource color4}"
+                                 Command="{Binding ShowUsersViewCommand}"
+                                 IsChecked="True">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Users" Style="{StaticResource menuButtonText}"/>
@@ -126,7 +130,7 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}"
+                                 Tag="{StaticResource color8}"
                                  Command="{Binding ShowSettingsViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
@@ -233,7 +237,7 @@
                             </Button>
 
                                                         <!--Not coded!!!!!-->
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
+                            <TextBlock Text="{Binding CurrentUser.DisplayName}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"

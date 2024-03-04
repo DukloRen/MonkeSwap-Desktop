@@ -11,9 +11,8 @@ using System.Windows.Controls;
 
 namespace MonkeSwap_Desktop.ViewModel
 {
-    public class UsersViewModel : ViewModelBase, INotifyPropertyChanged
+    public class UsersViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private const string path = "https://localhost:8080";
         private ObservableCollection<User> users = new ObservableCollection<User>();

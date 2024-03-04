@@ -33,21 +33,21 @@ namespace MonkeSwap_Desktop.View
         ObservableCollection<User> users = new ObservableCollection<User>();
 
         //Create DataGrid Items
-        users.Add(new User {Id = 1, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-        users.Add(new User { Id = 2, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-        users.Add(new User {Id = 3, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-        users.Add(new User {Id = 4, Username= "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-        users.Add(new User {Id = 5, Username= "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
-        users.Add(new User {Id = 6, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-        users.Add(new User {Id = 7, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-        users.Add(new User {Id = 8, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-        users.Add(new User {Id = 9, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-        users.Add(new User {Id = 10, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
-        users.Add(new User {Id = 11, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = "25/02/2024", Role = "admin" });
-        users.Add(new User {Id = 12, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = "24/02/2024", Role = "user" });
-        users.Add(new User {Id = 13, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = "29/02/2024", Role = "user" });
-        users.Add(new User {Id = 14, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = "28/02/2024", Role = "user" });
-        users.Add(new User {Id = 15, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = "26/02/2024", Role = "user" });
+        users.Add(new User {Id = 1, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR=new DateTime(2024, 12, 01), Role = "admin" });
+        users.Add(new User { Id = 2, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = new DateTime(2024, 11, 01), Role = "user" });
+        users.Add(new User {Id = 3, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = new DateTime(2024, 10, 01), Role = "user" });
+        users.Add(new User {Id = 4, Username= "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = new DateTime(2024, 12, 08), Role = "user" });
+        users.Add(new User {Id = 5, Username= "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = new DateTime(2024, 12, 10), Role = "user" });
+        users.Add(new User {Id = 6, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = new DateTime(2024, 01, 20), Role = "admin" });
+        users.Add(new User {Id = 7, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = new DateTime(2024, 01, 28), Role = "user" });
+        users.Add(new User {Id = 8, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = new DateTime(2024, 08, 12), Role = "user" });
+        users.Add(new User {Id = 9, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = new DateTime(2024, 12, 01), Role = "user" });
+        users.Add(new User {Id = 10, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR = new DateTime(2024, 12, 01), Role = "user" });
+        users.Add(new User {Id = 11, Username = "Kóth Tevin", Email = "kt@gmail.com", TC = 9, DOR = new DateTime(2024, 12, 01), Role = "admin" });
+        users.Add(new User {Id = 12, Username = "Kóth Tevin2", Email = "kt@gmail.hu", TC = 11, DOR = new DateTime(2024, 12, 01), Role = "user" });
+        users.Add(new User {Id = 13, Username = "Kóth Tevin3", Email = "kt@citromail.hu", TC = 20, DOR = new DateTime(2024, 12, 01), Role = "user" });
+        users.Add(new User {Id = 14, Username = "Kóth Tevin4", Email = "kt@email.com", TC = 13, DOR = new DateTime(2024, 12, 01), Role = "user" });
+        users.Add(new User {Id = 15, Username = "Kóth Tevin5", Email = "kt@email.hu", TC = 20, DOR =new DateTime(2024, 12, 01), Role = "user" });
 
         dtGrid.ItemsSource = users;
        }
@@ -58,7 +58,7 @@ namespace MonkeSwap_Desktop.View
         public string Username { get; set; }
         public string Email { get; set; }
         public int TC { get; set; }
-        public string DOR { get; set; }
+        public DateTime DOR { get; set; }
         public string Role { get; set; }
     }
 }

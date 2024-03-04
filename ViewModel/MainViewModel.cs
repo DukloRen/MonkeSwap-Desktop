@@ -72,7 +72,7 @@ namespace MonkeSwap_Desktop.ViewModel
             ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
 
             //Default view
-            ExecuteShowDatabaseViewCommand(null);
+            ExecuteShowUsersViewCommand(null);
         }
         private void ExecuteShowDatabaseViewCommand(object obj)
         {

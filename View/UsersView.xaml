@@ -26,7 +26,7 @@
                        FontSize="13"
                        FontWeight="SemiBold"
                        Margin="0,0,215,0"
-                       Foreground="#121518"
+                       Foreground="Black"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Center"/>
             
@@ -65,11 +65,8 @@
                       ItemsSource="{Binding}"
                       HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
-                    
 
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}"/>
-                    <!--Foreground="{StaticResource color9}"-->
-                    <!--TextElement.FontWeight="Bold"-->                    
                     <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>
                     <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
                     <DataGridTextColumn Header="TC" IsReadOnly="True" Width="*" Binding="{Binding TC}"/>
@@ -83,7 +80,7 @@
                                     <Button Style="{StaticResource gridEditButton}">
                                         <fa:IconImage Icon="Exchange" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0">
+                                    <Button Style="{StaticResource gridRemoveButton}">
                                         <fa:IconImage Icon="DeleteLeft" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>

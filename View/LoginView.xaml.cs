@@ -56,8 +56,6 @@ namespace MonkeSwap_Desktop.View
         {
             using (var client = new HttpClient())
             {
-
-
                 try
                 {
                     client.BaseAddress = new Uri(baseURL);
@@ -68,12 +66,17 @@ namespace MonkeSwap_Desktop.View
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var response = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
 
-                    MainView main = new MainView();
-                    main.ShowDialog();
+                    txtErrorMessage.Text = response;
+                    if (response.Contains("token"))
+                    {
+                        MainView main = new MainView();
+                        main.Show();                        
+                        Window.GetWindow(this).Close();
+                    }
                 }
                 catch (Exception ex)
                 {
-                    txtUser.Text = ex.Message;                    
+                    txtErrorMessage.Text = ex.Message;                    
                 }
             }
         }
