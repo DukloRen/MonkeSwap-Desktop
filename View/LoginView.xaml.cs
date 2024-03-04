@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Forms;
+using MessageBox = System.Windows.MessageBox;
+using Application = System.Windows.Application;
+using System.Diagnostics;
+using System.Globalization;
+using System.Net.Http;
+using System.Net;
+using Newtonsoft.Json;
+using MySqlX.XDevAPI.Common;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -19,6 +29,8 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class LoginView : Window
     {
+        public static string baseURL = "http://localhost:8080/";
+
         public LoginView()
         {
             InitializeComponent();
@@ -42,7 +54,31 @@ namespace MonkeSwap_Desktop.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    client.BaseAddress = new Uri(baseURL);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
+                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password=txtPass.Password});
+                    var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                    var response = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+
+                    txtErrorMessage.Text = response;
+                    if (response.Contains("token"))
+                    {
+                        MainView main = new MainView();
+                        main.Show();                        
+                        Window.GetWindow(this).Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    txtErrorMessage.Text = ex.Message;                    
+                }
+            }
         }
     }
-}
+  }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MonkeSwap_Desktop.View
 {
     /// <summary>
-    /// Interaction logic for CustomerView.xaml
+    /// Interaction logic for ItemsView.xaml
     /// </summary>
-    public partial class CustomerView : UserControl
+    public partial class ItemsView : UserControl
     {
-        public CustomerView()
+        public ItemsView()
         {
             InitializeComponent();
         }
