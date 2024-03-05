@@ -54,13 +54,82 @@ namespace MonkeSwap_Desktop.ViewModel
         }
 
         //--> Commands
-        public ICommand ShowHomeViewCommand { get;}
-        public ICommand ShowCustomerViewCommand { get;}
+        public ICommand ShowUsersViewCommand { get;}
+        public ICommand ShowSettingsViewCommand { get; }
+        public ICommand ShowItemsViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
+        public ICommand ShowProfileViewCommand { get; }
 
         public MainViewModel()
         {
 
             //Initialize commands
+            ShowDatabaseViewCommand = new ViewModelCommand(ExecuteShowDatabaseViewCommand);
+            ShowUsersViewCommand = new ViewModelCommand(ExecuteShowUsersViewCommand);
+            ShowItemsViewCommand = new ViewModelCommand(ExecuteShowItemsViewCommand);
+            ShowProfileViewCommand = new ViewModelCommand(ExecuteShowProfileViewCommand);
+            ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
+
+            //Default view
+            ExecuteShowUsersViewCommand(null);
+        }
+        private void ExecuteShowDatabaseViewCommand(object obj)
+        {
+            CurrentChildView = new DatabaseViewModel();
+            Caption = "Database";
+            Icon = IconChar.Database;
+        }
+
+        private void ExecuteShowUsersViewCommand(object obj)
+        {
+            CurrentChildView = new UsersViewModel();
+            Caption = "Users";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowItemsViewCommand(object obj)
+        {
+            CurrentChildView = new ItemsViewModel();
+            Caption = "Items";
+            Icon = IconChar.Book;
+        }
+
+        private void ExecuteShowProfileViewCommand(object obj)
+        {
+            CurrentChildView = new ProfileViewModel();
+            Caption = "Profile";
+            Icon = IconChar.UserAlt;
+        }
+
+        private void ExecuteShowSettingsViewCommand(object obj)
+        {
+            CurrentChildView = new SettingsViewModel();
+            Caption = "Settings";
+            Icon = IconChar.Tools;
+        }
+        public string DisplayName()
+        {
+            return UserData.username.ToString();
         }
     }
 }

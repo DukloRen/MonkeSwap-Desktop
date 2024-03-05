@@ -13,6 +13,38 @@
         Background="Transparent"
         AllowsTransparency="True">
 
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
+            <local:UsersView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:ItemsViewModel}">
+            <local:ItemsView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+            <local:ProfileView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <local:SettingsView/>
+        </DataTemplate>
+
+    </Window.Resources>
+    
+        </DataTemplate>
+
+    </Window.Resources>
+    
+        </DataTemplate>
+
+    </Window.Resources>
+    
     <Border CornerRadius="10"
             BorderThickness="1">
         
@@ -222,8 +254,8 @@
                                               Style="{StaticResource iconButtonIcon}"/>
                             </Button>
 
-                                                        <!--Nincs megírva!!!!!-->
-                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
+                                                        <!--Not coded!!!!!-->
+                            <TextBlock Text="{Binding CurrentUser.DisplayName}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"

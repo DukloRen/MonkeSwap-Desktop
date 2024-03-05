@@ -197,8 +197,9 @@
                             Cursor="Hand"
                             Grid.Column="1"
                             Click="btnLogin_Click" 
-                            Margin="0,50,0,0" 
-                            Grid.ColumnSpan="2">
+                            Margin="0,10,0,0" 
+                            Grid.ColumnSpan="2"
+                            IsDefault="True">
 
                         <Button.Style>
                             <Style TargetType="Button">
