@@ -22,6 +22,7 @@ using System.Net;
 using Newtonsoft.Json;
 using MySqlX.XDevAPI.Common;
 using MonkeSwap_Desktop.Model;
+using Mysqlx.Session;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -55,13 +56,6 @@ namespace MonkeSwap_Desktop.View
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    client.BaseAddress = new Uri(baseURL);
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                     var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password = txtPass.Password });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");

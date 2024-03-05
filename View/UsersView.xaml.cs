@@ -1,12 +1,14 @@
 ﻿using MonkeSwap_Desktop.Model;
 using MonkeSwap_Desktop.ViewModel;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -28,7 +30,6 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class UsersView : UserControl
     {
-
             private string baseURL = LoginView.baseURL;
             private string token = CurrentUser.userToken;
             public UsersView()

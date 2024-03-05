@@ -14,12 +14,15 @@ namespace MonkeSwap_Desktop.ViewModel
 {
     public class UsersViewModel : ViewModelBase
     {
+        public string baseURL = LoginView.baseURL;
+        private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
         private const string path = "https://localhost:8080/";
         private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
         /*
         public ObservableCollection<UserData> Users
+        private ObservableCollection<UserData> Users
         {
             get { return users; }
             set
@@ -44,7 +47,6 @@ namespace MonkeSwap_Desktop.ViewModel
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync(path);
 
                 users = await response.Content.ReadAsAsync<ObservableCollection<UserData>>();
                 return users;
