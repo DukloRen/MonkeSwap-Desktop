@@ -37,15 +37,7 @@
         </DataTemplate>
 
     </Window.Resources>
-    
-        </DataTemplate>
 
-    </Window.Resources>
-    
-        </DataTemplate>
-
-    </Window.Resources>
-    
     <Border CornerRadius="10"
             BorderThickness="1">
         
