@@ -21,6 +21,7 @@ using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using MySqlX.XDevAPI.Common;
+using MonkeSwap_Desktop.Model;
 using Mysqlx.Session;
 
 namespace MonkeSwap_Desktop.View
@@ -56,6 +57,55 @@ namespace MonkeSwap_Desktop.View
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
 
+                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password = txtPass.Password });
+                    var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                    var result = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+                    var json = result;
+                    var token = JsonConvert.DeserializeObject<CurrentUser>(json).token;
+
+                    CurrentUser.userToken = token;
+
+                }
+                catch (Exception ex)
+                {
+                    txtErrorMessage.Text = ex.Message;
+                }
+
+                try
+                {
+                    string token = CurrentUser.userToken;
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/users");
+                    var result = client.GetAsync(endpoint).Result;
+                    var json = result.Content.ReadAsStringAsync().Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        CurrentUser user = JsonConvert.DeserializeObject<CurrentUser>(json);
+                        UserData.id = user.id;
+                        UserData.email = user.email;
+                        UserData.username = user.username;
+                        UserData.role = user.role;
+                        UserData.tradesCompleted = user.tradesCompleted;
+                        UserData.dateOfRegistration = user.dateOfRegistration;
+                        if(user.role=="ADMIN")
+                        {
+                            MainView main = new MainView();
+                            main.Show();
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                        {
+                            txtErrorMessage.Text = "This user doesn't have admin privileges!";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    txtErrorMessage.Text = ex.Message;
+                }
+            }
         }
     }
   }

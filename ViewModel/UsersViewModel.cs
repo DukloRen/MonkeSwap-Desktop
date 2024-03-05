@@ -1,4 +1,5 @@
-﻿using MonkeSwap_Desktop.View;
+﻿using MonkeSwap_Desktop.Model;
+using MonkeSwap_Desktop.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,14 +17,17 @@ namespace MonkeSwap_Desktop.ViewModel
         public string baseURL = LoginView.baseURL;
         private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
-        private const string path = "https://localhost:8080";
-        private ObservableCollection<User> users = new ObservableCollection<User>();
+        private const string path = "https://localhost:8080/";
+        private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
+        /*
+        public ObservableCollection<UserData> Users
         private ObservableCollection<UserData> Users
         {
             get { return users; }
             set
             {
+                SetProperty<ObservableCollection<UserData>>(ref users, value);
             }
         }
 
@@ -37,16 +41,18 @@ namespace MonkeSwap_Desktop.ViewModel
             Users = await getAllUsers();
         }
 
+        public async Task<ObservableCollection<UserData>> getAllUsers()
         {
 
 
             using (HttpClient client = new HttpClient())
             {
 
+                users = await response.Content.ReadAsAsync<ObservableCollection<UserData>>();
                 return users;
             }
 
-        }
+        }*/
 
     }
 }

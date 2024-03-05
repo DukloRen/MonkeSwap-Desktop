@@ -59,32 +59,46 @@ namespace MonkeSwap_Desktop.ViewModel
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowItemsViewCommand { get; }
         public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
-        public ICommand ShowProfileViewCommand { get; }
 
         public MainViewModel()
         {
 
             //Initialize commands
+            ShowUsersViewCommand = new ViewModelCommand(ExecuteShowUsersViewCommand);
+            ShowItemsViewCommand = new ViewModelCommand(ExecuteShowItemsViewCommand);
+            ShowProfileViewCommand = new ViewModelCommand(ExecuteShowProfileViewCommand);
+            ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
+
+            //Default view
+            ExecuteShowUsersViewCommand(null);
+        }
+
+        private void ExecuteShowUsersViewCommand(object obj)
+        {
+            CurrentChildView = new UsersViewModel();
+            Caption = "Users";
+            Icon = IconChar.UserGroup;
+        }
+
+        private void ExecuteShowItemsViewCommand(object obj)
+        {
+            CurrentChildView = new ItemsViewModel();
+            Caption = "Items";
+            Icon = IconChar.Book;
+        }
+
+        private void ExecuteShowProfileViewCommand(object obj)
+        {
+            CurrentChildView = new ProfileViewModel();
+            Caption = "Profile";
+            Icon = IconChar.UserAlt;
+        }
+
+        private void ExecuteShowSettingsViewCommand(object obj)
+        {
+            CurrentChildView = new SettingsViewModel();
+            Caption = "Settings";
+            Icon = IconChar.Tools;
         }
     }
 }
