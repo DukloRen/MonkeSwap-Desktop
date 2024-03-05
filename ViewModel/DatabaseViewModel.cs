@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonkeSwap_Desktop.ViewModel
 {
-    public class HomeViewModel : ViewModelBase
+    public class DatabaseViewModel : ViewModelBase
     {
 
     }

@@ -16,13 +16,14 @@ namespace MonkeSwap_Desktop.ViewModel
         public string baseURL = LoginView.baseURL;
         private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
+        private const string path = "https://localhost:8080";
+        private ObservableCollection<User> users = new ObservableCollection<User>();
 
         private ObservableCollection<UserData> Users
         {
             get { return users; }
             set
             {
-                SetProperty<ObservableCollection<UserData>>(ref users, value);
             }
         }
 
@@ -36,15 +37,12 @@ namespace MonkeSwap_Desktop.ViewModel
             Users = await getAllUsers();
         }
 
-        private async Task<ObservableCollection<UserData>> getAllUsers()
         {
 
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync(baseURL+"admin/users");
 
-                users = await response.Content.ReadAsAsync<ObservableCollection<UserData>>();
                 return users;
             }
 

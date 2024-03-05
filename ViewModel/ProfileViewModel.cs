@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonkeSwap_Desktop.ViewModel
 {
-    public class CustomerViewModel// : ViewModelBase
+    internal class ProfileViewModel : ViewModelBase
     {
-
     }
 }

@@ -161,9 +161,8 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0">
-
-
                     </TextBox>
+                    
                     <TextBlock Text="Password"
                                Foreground="DarkGray"
                                FontSize="12"
@@ -184,9 +183,16 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0">
-
-
                     </PasswordBox>
+
+                    <TextBlock x:Name="txtErrorMessage"
+                               Text=""
+                               Foreground="Red"
+                               FontSize="12"
+                               FontWeight="Bold"
+                               FontFamily="Montserrat"
+                               Margin="0,15,0,0"
+                               />
 
                     <Button x:Name="btnLogin"
                             BorderThickness="0"
@@ -227,22 +233,21 @@
                     <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
-                        
-                        <TextBlock Text="Forgot password?"
+
+                        <TextBlock Text="Only Administrators allowed beyond this point"
                                Foreground="DarkGray"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"/>
-                        
-                    <TextBlock Text="Reset"
-                               Foreground="White"
-                               FontSize="12"
+                               FontSize="11"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Cursor="Hand"
-                               Margin="8,0,0,0"/>
+                               Width="250"/>
 
                     </StackPanel>
+                    <TextBlock Text="MonkeSwap 2024"
+                               Foreground="DarkGray"
+                               FontSize="11"
+                               FontWeight="Medium"
+                               FontFamily="Montserrat"
+                               Width="100"/>
                 </StackPanel>
 
 
