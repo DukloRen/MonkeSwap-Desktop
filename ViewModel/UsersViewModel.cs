@@ -1,4 +1,5 @@
-﻿using MonkeSwap_Desktop.View;
+﻿using MonkeSwap_Desktop.Model;
+using MonkeSwap_Desktop.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,16 +15,16 @@ namespace MonkeSwap_Desktop.ViewModel
     public class UsersViewModel : ViewModelBase
     {
 
-        private const string path = "https://localhost:8080";
-        private ObservableCollection<User> users = new ObservableCollection<User>();
+        private const string path = "https://localhost:8080/";
+        private ObservableCollection<UserData> users = new ObservableCollection<UserData>();
 
-
-        public ObservableCollection<User> Users
+        /*
+        public ObservableCollection<UserData> Users
         {
             get { return users; }
             set
             {
-                SetProperty<ObservableCollection<User>>(ref users, value);
+                SetProperty<ObservableCollection<UserData>>(ref users, value);
             }
         }
 
@@ -37,7 +38,7 @@ namespace MonkeSwap_Desktop.ViewModel
             Users = await getAllUsers();
         }
 
-        public async Task<ObservableCollection<User>> getAllUsers()
+        public async Task<ObservableCollection<UserData>> getAllUsers()
         {
 
 
@@ -45,11 +46,11 @@ namespace MonkeSwap_Desktop.ViewModel
             {
                 HttpResponseMessage response = await client.GetAsync(path);
 
-                users = await response.Content.ReadAsAsync<ObservableCollection<User>>();
+                users = await response.Content.ReadAsAsync<ObservableCollection<UserData>>();
                 return users;
             }
 
-        }
+        }*/
 
     }
 }

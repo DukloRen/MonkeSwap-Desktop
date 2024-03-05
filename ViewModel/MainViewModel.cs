@@ -55,7 +55,6 @@ namespace MonkeSwap_Desktop.ViewModel
         }
 
         //--> Commands
-        public ICommand ShowDatabaseViewCommand { get;}
         public ICommand ShowUsersViewCommand { get;}
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowItemsViewCommand { get; }
@@ -65,7 +64,6 @@ namespace MonkeSwap_Desktop.ViewModel
         {
 
             //Initialize commands
-            ShowDatabaseViewCommand = new ViewModelCommand(ExecuteShowDatabaseViewCommand);
             ShowUsersViewCommand = new ViewModelCommand(ExecuteShowUsersViewCommand);
             ShowItemsViewCommand = new ViewModelCommand(ExecuteShowItemsViewCommand);
             ShowProfileViewCommand = new ViewModelCommand(ExecuteShowProfileViewCommand);
@@ -73,12 +71,6 @@ namespace MonkeSwap_Desktop.ViewModel
 
             //Default view
             ExecuteShowUsersViewCommand(null);
-        }
-        private void ExecuteShowDatabaseViewCommand(object obj)
-        {
-            CurrentChildView = new DatabaseViewModel();
-            Caption = "Database";
-            Icon = IconChar.Database;
         }
 
         private void ExecuteShowUsersViewCommand(object obj)

@@ -66,12 +66,12 @@
                       HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding Id}"/>
-                    <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding Username}"/>
-                    <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
-                    <DataGridTextColumn Header="TC" IsReadOnly="True" Width="*" Binding="{Binding TC}"/>
-                    <DataGridTextColumn Header="DOR" IsReadOnly="True" Width="*" Binding="{Binding DOR}"/>
-                    <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding Role}"/>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Username" IsReadOnly="True" Width="*" Binding="{Binding username}"/>
+                    <DataGridTextColumn Header="Email" IsReadOnly="True" Width="*" Binding="{Binding email}"/>
+                    <DataGridTextColumn Header="TC" IsReadOnly="True" Width="*" Binding="{Binding tradesCompleted}"/>
+                    <DataGridTextColumn Header="DOR" IsReadOnly="True" Width="*" Binding="{Binding dateOfRegistration}"/>
+                    <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding role}"/>
 
                     <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>

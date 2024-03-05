@@ -21,6 +21,7 @@ using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
 using MySqlX.XDevAPI.Common;
+using MonkeSwap_Desktop.Model;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -62,21 +63,53 @@ namespace MonkeSwap_Desktop.View
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password=txtPass.Password});
+                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password = txtPass.Password });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                    var response = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+                    var result = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+                    var json = result;
+                    var token = JsonConvert.DeserializeObject<CurrentUser>(json).token;
 
-                    txtErrorMessage.Text = response;
-                    if (response.Contains("token"))
+                    CurrentUser.userToken = token;
+
+                }
+                catch (Exception ex)
+                {
+                    txtErrorMessage.Text = ex.Message;
+                }
+
+                try
+                {
+                    string token = CurrentUser.userToken;
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/users");
+                    var result = client.GetAsync(endpoint).Result;
+                    var json = result.Content.ReadAsStringAsync().Result;
+
+                    if (result.IsSuccessStatusCode)
                     {
-                        MainView main = new MainView();
-                        main.Show();                        
-                        Window.GetWindow(this).Close();
+                        CurrentUser user = JsonConvert.DeserializeObject<CurrentUser>(json);
+                        UserData.id = user.id;
+                        UserData.email = user.email;
+                        UserData.username = user.username;
+                        UserData.role = user.role;
+                        UserData.tradesCompleted = user.tradesCompleted;
+                        UserData.dateOfRegistration = user.dateOfRegistration;
+                        if(user.role=="ADMIN")
+                        {
+                            MainView main = new MainView();
+                            main.Show();
+                            Window.GetWindow(this).Close();
+                        }
+                        else
+                        {
+                            txtErrorMessage.Text = "This user doesn't have admin privileges!";
+                        }
                     }
                 }
                 catch (Exception ex)
                 {
-                    txtErrorMessage.Text = ex.Message;                    
+                    txtErrorMessage.Text = ex.Message;
                 }
             }
         }

@@ -20,10 +20,6 @@
 
     <Window.Resources>
 
-        <DataTemplate DataType="{x:Type viewModel:DatabaseViewModel}">
-            <local:DatabaseView/>
-        </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:UsersViewModel}">
             <local:UsersView/>
         </DataTemplate>
