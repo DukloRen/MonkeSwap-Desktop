@@ -110,8 +110,8 @@
             </Setter.Value>
         </Setter>
 
+        <!--Button style on hover-->
         <Style.Triggers>
-            <!--Button style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
             </Trigger>

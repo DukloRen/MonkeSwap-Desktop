@@ -251,7 +251,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\user_icon.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\gibbon_raging.jpg" />
   </ItemGroup>
@@ -260,9 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\profile_picture.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\user_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\monki.jpg" />

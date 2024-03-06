@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using MonkeSwap_Desktop.ViewModel;
+using FontAwesome.Sharp;
+using MonkeSwap_Desktop.Model;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -25,6 +28,8 @@ namespace MonkeSwap_Desktop.View
         {
             InitializeComponent();
             this.MaxHeight=SystemParameters.MaximizedPrimaryScreenHeight;
+
+            userNameTopRightCorner.Text = UserData.username;
         }
 
         [DllImport("user32.dll")]
@@ -61,6 +66,13 @@ namespace MonkeSwap_Desktop.View
             {
                 this.WindowState = WindowState.Normal;
             }
+        }
+
+        private void logOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            LoginView login = new LoginView();
+            login.Show();
+            Window.GetWindow(this).Close();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FontAwesome.Sharp;
+using MonkeSwap_Desktop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +88,7 @@ namespace MonkeSwap_Desktop.ViewModel
             Icon = IconChar.Book;
         }
 
-        private void ExecuteShowProfileViewCommand(object obj)
+        public void ExecuteShowProfileViewCommand(object obj)
         {
             CurrentChildView = new ProfileViewModel();
             Caption = "Profile";
