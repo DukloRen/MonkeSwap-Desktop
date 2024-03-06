@@ -178,7 +178,7 @@
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Margin" Value="15,0,15,0"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -483,9 +483,21 @@
         </Setter>
     </Style>
 
-    <!--Datagrid Header Style-->
-    <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
-        <Setter Property="FontSize" Value="15"/>
+    <!--Removing a button's default design elements-->
+    <Style x:Key="noButtonDesignStyleForUserIcon" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
+
 </ResourceDictionary>

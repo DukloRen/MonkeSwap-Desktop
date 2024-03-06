@@ -86,7 +86,8 @@
                     
                     <!--Menu Buttons-->
                     
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="usersRadioButton"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color4}"
                                  Command="{Binding ShowUsersViewCommand}"
                                  IsChecked="True">
@@ -96,7 +97,8 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="itemsRadioButton"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color9}"
                                  Command="{Binding ShowItemsViewCommand}">
                         <StackPanel Orientation="Horizontal">
@@ -105,7 +107,8 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="profileRadioButton"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}"
                                  Command="{Binding ShowProfileViewCommand}">
                         <StackPanel Orientation="Horizontal">
@@ -114,7 +117,8 @@
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
+                    <RadioButton x:Name="settingsRadioButton"
+                                 Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color8}"
                                  Command="{Binding ShowSettingsViewCommand}">
                         <StackPanel Orientation="Horizontal">
@@ -231,14 +235,22 @@
                                        VerticalAlignment="Center"/>
                             
                             <!--User profile picture (not changeable)-->
-                            <Ellipse Height="35" Width="35"
-                                     Stroke="{StaticResource color2}"
-                                     StrokeThickness="2"
-                                     Margin="10,0,10,0">
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/user_icon.jpg"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
+                            <Button x:Name="profilePictureInTopRightButton" 
+                                    Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    Command="{Binding ShowProfileViewCommand}"
+                                    Click="profilePictureInTopRightButton_Click"
+                                    Style="{StaticResource noButtonDesignStyleForUserIcon}">
+                                <Ellipse Height="35" 
+                                         Width="35"
+                                         Stroke="{StaticResource titleColor3}"
+                                         StrokeThickness="2"
+                                         Margin="10,0,10,0">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="/Images/user_icon.jpg"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                            </Button>
 
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color3}">

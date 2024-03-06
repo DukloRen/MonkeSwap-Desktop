@@ -74,5 +74,13 @@ namespace MonkeSwap_Desktop.View
             login.Show();
             Window.GetWindow(this).Close();
         }
+
+        private void profilePictureInTopRightButton_Click(object sender, RoutedEventArgs e)
+        {
+            usersRadioButton.IsChecked = false;
+            itemsRadioButton.IsChecked = false;
+            settingsRadioButton.IsChecked = false;
+            profileRadioButton.IsChecked = true;
+        }
     }
 }
