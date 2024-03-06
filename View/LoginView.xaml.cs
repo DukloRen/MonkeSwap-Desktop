@@ -71,7 +71,6 @@ namespace MonkeSwap_Desktop.View
                     var token = JsonConvert.DeserializeObject<CurrentUser>(result).token;
 
                     CurrentUser.userToken = token;
-                    txtErrorMessage.Text = result;
                 }
                 catch (Exception ex)
                 {
