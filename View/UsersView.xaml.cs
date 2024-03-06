@@ -44,7 +44,7 @@ namespace MonkeSwap_Desktop.View
                 var result = client.GetAsync(endpoint).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
-                List<UserData> userList = JsonConvert.DeserializeObject<List<UserData>>(json);
+                List<CurrentUser> userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
 
                 dtGrid.ItemsSource = userList;
             }

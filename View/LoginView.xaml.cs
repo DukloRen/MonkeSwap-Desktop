@@ -68,11 +68,10 @@ namespace MonkeSwap_Desktop.View
                     var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password = txtPass.Password });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var result = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
-                    var json = result;
-                    var token = JsonConvert.DeserializeObject<CurrentUser>(json).token;
+                    var token = JsonConvert.DeserializeObject<CurrentUser>(result).token;
 
                     CurrentUser.userToken = token;
-
+                    txtErrorMessage.Text = result;
                 }
                 catch (Exception ex)
                 {
@@ -84,7 +83,7 @@ namespace MonkeSwap_Desktop.View
                     string token = CurrentUser.userToken;
 
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/users");
+                    var endpoint = new Uri(baseURL + "user");
                     var result = client.GetAsync(endpoint).Result;
                     var json = result.Content.ReadAsStringAsync().Result;
 
