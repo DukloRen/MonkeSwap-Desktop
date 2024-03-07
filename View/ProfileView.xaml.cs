@@ -31,6 +31,7 @@ namespace MonkeSwap_Desktop.View
             profileEmailTxt.Text = UserData.email;
             profileTradesCompletedTxt.Text = Convert.ToString(UserData.tradesCompleted);
             profileDateOfRegistrationTxt.Text = UserData.dateOfRegistration;
+            profileRoleTxt.Text = UserData.role;
 
         }
     }

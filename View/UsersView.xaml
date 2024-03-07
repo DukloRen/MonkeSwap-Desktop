@@ -35,7 +35,7 @@
                   HorizontalAlignment="Right"
                   VerticalAlignment="Top"
                   Grid.Row="0">
-                <TextBlock Margin="20,0,0,10"
+                <TextBlock Margin="20,0,0,12"
                           VerticalAlignment="Center"
                           Foreground="#b0b9c6"
                           IsHitTestVisible="False"
@@ -43,7 +43,10 @@
                           Text="Search in IDs"
                           Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
 
-                <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}" Margin="0,0,0,10"/>
+                <TextBox x:Name="txtFilter"
+                         Style="{StaticResource textboxFilter}"
+                         Margin="0,0,0,10"
+                         TextChanged="txtFilter_TextChanged"/>
 
                 <fa:IconImage Icon="MagnifyingGlass"
                   Style="{StaticResource menuButtonIcon}"
@@ -62,8 +65,9 @@
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       Grid.Row="1"
                       x:Name="dtGrid"
-                      ItemsSource="{Binding}"
+                      ItemsSource="{Binding UsersCollection}"
                       HorizontalScrollBarVisibility="Disabled">
+
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Width="auto" Binding="{Binding id}"/>
@@ -73,15 +77,12 @@
                     <DataGridTextColumn Header="DOR" IsReadOnly="True" Width="*" Binding="{Binding dateOfRegistration}"/>
                     <DataGridTextColumn Header="Role" IsReadOnly="True" Width="*" Binding="{Binding role}"/>
 
-                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Style="{StaticResource gridEditButton}">
                                         <fa:IconImage Icon="Exchange" Style="{StaticResource gridButtonIcon}"/>
-                                    </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}">
-                                        <fa:IconImage Icon="DeleteLeft" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

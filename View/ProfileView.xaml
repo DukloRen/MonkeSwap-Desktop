@@ -74,22 +74,14 @@
                                FontFamily="Montserrat"
                                Margin="0,15,0,5"
                                />
-        </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Left"
-                                Margin="0,15,0,0"
-                                VerticalAlignment="Bottom"
-                                Grid.Row="1">
-
-            <TextBlock Text="MonkeSwap 2024"
-                               Foreground="DarkGray"
-                               FontSize="11"
+            <TextBlock         Text="Role:"
+                               Foreground="White"
+                               FontSize="15"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
-                               Width="250"
-                           VerticalAlignment="Bottom"/>
-
+                               Margin="0,15,0,5"
+                               />
         </StackPanel>
 
         <StackPanel Width="200"
@@ -125,8 +117,34 @@
                    FontFamily="Montserrat"
                    Margin="0,15,0,5"
                    />
+            
+            <TextBlock x:Name="profileRoleTxt"        
+                   Text=""
+                   Foreground="DarkGray"
+                   FontSize="15"
+                   FontWeight="Medium"
+                   FontFamily="Montserrat"
+                   Margin="0,15,0,5"
+                   />
 
         </StackPanel>
-        <Image Source="/Images/gibbon_logo.png" Margin="118,0,-388,118" Grid.Column="1" Grid.RowSpan="2"/>
+
+        <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="0,15,0,0"
+                        VerticalAlignment="Bottom"
+                        Grid.Row="1">
+
+            <TextBlock Text="MonkeSwap 2024"
+                       Foreground="DarkGray"
+                       FontSize="11"
+                       FontWeight="Medium"
+                       FontFamily="Montserrat"
+                       Width="250"
+                   VerticalAlignment="Bottom"/>
+
+        </StackPanel>
+        
+        <Image Source="/Images/gibbon_logo.png" Margin="134,0,-404,118" Grid.Column="1" Grid.RowSpan="2"/>
     </Grid>
 </UserControl>
