@@ -161,6 +161,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\CurrentUser.cs" />
+    <Compile Include="Model\ItemData.cs" />
     <Compile Include="Model\UserData.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />

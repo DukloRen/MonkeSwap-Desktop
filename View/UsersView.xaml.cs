@@ -34,6 +34,7 @@ namespace MonkeSwap_Desktop.View
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
         private List<CurrentUser> userList;
+
         public UsersView()
         {
             InitializeComponent();

@@ -186,13 +186,13 @@
                     </PasswordBox>
 
                     <TextBlock x:Name="txtErrorMessage"
-                               Text=""
-                               Foreground="Red"
-                               FontSize="12"
-                               FontWeight="Bold"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,0"
-                               />
+                             Text=""
+                             Foreground="Red"
+                             FontSize="12"
+                             FontWeight="Bold"
+                             FontFamily="Montserrat"
+                             Margin="0,15,0,0"
+                             TextWrapping="Wrap"/>
 
                     <Button x:Name="btnLogin"
                             BorderThickness="0"

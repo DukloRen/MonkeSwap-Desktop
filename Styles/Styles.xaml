@@ -9,7 +9,7 @@
         <Setter Property="Height" Value="50"/>
         <Setter Property="Margin" Value="-5,0,0,5"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+        <Setter Property="Foreground" Value="{StaticResource titleColor2}"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -402,7 +402,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
-    <!-- CheckBox Style-->
+    <!-- CheckBox Style
     <SolidColorBrush x:Key="OptionMark.Static.Background" Color="#FFFFFFFF"/>
     <SolidColorBrush x:Key="OptionMark.Static.Border" Color="#FF707070"/>
     <SolidColorBrush x:Key="OptionMark.Static.Glyph" Color="#FF212121"/>
@@ -481,6 +481,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    -->
 
     <!--Removing a button's default design elements-->
     <Style x:Key="noButtonDesignStyleForUserIcon" TargetType="Button">

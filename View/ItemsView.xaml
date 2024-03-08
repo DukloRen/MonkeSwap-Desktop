@@ -4,10 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
+             xmlns:viewModel="clr-namespace:MonkeSwap_Desktop.ViewModel"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" d:DataContext="{d:DesignInstance Type=viewModel:ItemsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="Yellow">
+             Background="Transparent">
+    
+    <Control.Resources>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </Control.Resources>
+
     <Grid>
-            
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="550"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Filter by"
+                   Grid.Row="0"
+                   FontSize="13"
+                   FontWeight="SemiBold"
+                   Margin="0,0,215,0"
+                   Foreground="Black"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"/>
+
+            <!--Filter Textbox-->
+            <Grid Width="200" Height="45"
+              HorizontalAlignment="Right"
+              VerticalAlignment="Top"
+              Grid.Row="0">
+                <TextBlock Margin="20,0,0,12"
+                      VerticalAlignment="Center"
+                      Foreground="Gray"
+                      IsHitTestVisible="False"
+                      Panel.ZIndex="1"
+                      Text="Search in IDs"
+                      Visibility="{Binding ElementName=txtFilter, Path=Text.s, Converter={StaticResource BoolToVis}}"/>
+
+                <TextBox x:Name="txtFilter"
+                     Style="{StaticResource textboxFilter}"
+                     Margin="0,0,0,11"
+                     TextChanged="txtFilter_TextChanged"/>
+
+                <fa:IconImage Icon="MagnifyingGlass"
+              Style="{StaticResource menuButtonIcon}"
+              Width="15"
+              Height="15"
+              VerticalAlignment="Center"
+              Foreground="#b0b9c6"
+              HorizontalAlignment="Right"
+              Margin="0,0,15,10"/>
+            </Grid>
+
+            <!--Users Datagrid-->
+            <DataGrid Style="{DynamicResource DataGridStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  Grid.Row="1"
+                  x:Name="dtGrid"
+                  ItemsSource="{Binding UsersCollection}"
+                  HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,134">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding id}"/>
+                    <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding title}"/>
+                    <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" Binding="{Binding reports}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

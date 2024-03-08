@@ -63,7 +63,6 @@
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
-                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
                         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="0"/>
                     </LinearGradientBrush>
                 </Border.Background>
@@ -137,7 +136,6 @@
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
                         <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
                     </LinearGradientBrush>
                 </Border.Background>
