@@ -33,6 +33,7 @@ namespace MonkeSwap_Desktop.View
     {
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
+        private List<CurrentUser> userList;
         public UsersView()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace MonkeSwap_Desktop.View
                     var result = client.GetAsync(endpoint).Result;
                     var json = result.Content.ReadAsStringAsync().Result;
 
-                    List<CurrentUser> userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
+                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
                     dtGrid.ItemsSource = userList;
             }
         }
@@ -75,17 +76,7 @@ namespace MonkeSwap_Desktop.View
             }
             else
             {
-                using (var client = new HttpClient())
-                {
-
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/users");
-                    var result = client.GetAsync(endpoint).Result;
-                    var json = result.Content.ReadAsStringAsync().Result;
-
-                    List<CurrentUser> userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
                     dtGrid.ItemsSource = userList;
-                }
             }
         }
     }
