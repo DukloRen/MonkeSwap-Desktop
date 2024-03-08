@@ -54,15 +54,23 @@ namespace MonkeSwap_Desktop.View
         {
             if (txtFilter.Text!="")
             {
-                using (var client = new HttpClient())
+                try
                 {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint2 = new Uri(baseURL + "admin/user/" + txtFilter.Text);
-                    var result2 = client.GetAsync(endpoint2).Result;
-                    var json2 = result2.Content.ReadAsStringAsync().Result;
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                        var endpoint2 = new Uri(baseURL + "admin/user/" + txtFilter.Text);
+                        var result2 = client.GetAsync(endpoint2).Result;
+                        var json2 = result2.Content.ReadAsStringAsync().Result;
 
-                    List<CurrentUser> userListFiltered = JsonConvert.DeserializeObject<List<CurrentUser>>(json2);
-                    dtGrid.ItemsSource = userListFiltered;
+                        CurrentUser userFiltered = JsonConvert.DeserializeObject<CurrentUser>(json2);
+                        List<CurrentUser> userFilteredList = new List<CurrentUser>() {userFiltered};
+                        dtGrid.ItemsSource = userFilteredList;
+                    }
+                }
+                catch (Exception)
+                {
+                    dtGrid.ItemsSource=null;
                 }
             }
             else

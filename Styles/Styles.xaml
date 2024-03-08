@@ -127,14 +127,13 @@
 
     <!--Filter Textbox in UsersView-->
     <Style x:Key="textboxFilter" TargetType="TextBox">
-        <Setter Property="Padding" Value="10,7"/>
-        <Setter Property="Background" Value="#ffffff"/>
-        <Setter Property="Foreground" Value="#b0b9c6"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="11"/>
         <Setter Property="Padding" Value="15,10"/>
-        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0,10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBoxBase">
@@ -355,7 +354,7 @@
                     <Condition Property="IsSelected" Value="True"/>
                     <Condition Property="Selector.IsSelectionActive" Value="False"/>
                 </MultiTrigger.Conditions>
-                <Setter Property="Background" Value="LightGray"/>
+                <Setter Property="Background" Value="DarkGray"/>
             </MultiTrigger>
         </Style.Triggers>
     </Style>

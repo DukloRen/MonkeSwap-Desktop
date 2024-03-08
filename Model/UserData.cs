@@ -8,7 +8,7 @@ namespace MonkeSwap_Desktop.Model
 {
     internal class UserData
     {
-        public static int id { get; set; }
+        public static long id { get; set; }
         public static string email { get; set; }
         public static string username { get; set; }
         public static string role { get; set; }

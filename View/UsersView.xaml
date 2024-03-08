@@ -37,7 +37,7 @@
                   Grid.Row="0">
                 <TextBlock Margin="20,0,0,12"
                           VerticalAlignment="Center"
-                          Foreground="#b0b9c6"
+                          Foreground="Gray"
                           IsHitTestVisible="False"
                           Panel.ZIndex="1"
                           Text="Search in IDs"
@@ -45,7 +45,7 @@
 
                 <TextBox x:Name="txtFilter"
                          Style="{StaticResource textboxFilter}"
-                         Margin="0,0,0,10"
+                         Margin="0,0,0,11"
                          TextChanged="txtFilter_TextChanged"/>
 
                 <fa:IconImage Icon="MagnifyingGlass"
