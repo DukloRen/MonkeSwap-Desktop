@@ -72,5 +72,14 @@ namespace MonkeSwap_Desktop.View
                 dtGrid.ItemsSource = itemList;
             }
         }
+
+        private void openButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReportedItemView reportedItem = new ReportedItemView();
+
+            
+
+            reportedItem.Show();
+        }
     }
 }

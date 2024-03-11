@@ -165,6 +165,7 @@
     <Compile Include="Model\UserData.cs" />
     <Compile Include="ViewModel\ItemsViewModel.cs" />
     <Compile Include="ViewModel\ProfileViewModel.cs" />
+    <Compile Include="ViewModel\ReportedItemViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
@@ -175,6 +176,9 @@
     </Compile>
     <Compile Include="View\ProfileView.xaml.cs">
       <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReportedItemView.xaml.cs">
+      <DependentUpon>ReportedItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UsersView.xaml.cs">
       <DependentUpon>UsersView.xaml</DependentUpon>
@@ -205,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReportedItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

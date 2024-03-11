@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MonkeSwap_Desktop.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -8,29 +10,22 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Runtime.InteropServices;
-using System.Windows.Interop;
-using MonkeSwap_Desktop.ViewModel;
-using FontAwesome.Sharp;
-using MonkeSwap_Desktop.Model;
-using System.Windows.Threading;
 
 namespace MonkeSwap_Desktop.View
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for ReportedItemView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class ReportedItemView : Window
     {
-        public MainView()
+        public ReportedItemView()
         {
             InitializeComponent();
-            this.MaxHeight=SystemParameters.MaximizedPrimaryScreenHeight;
-
-            userNameTopRightCorner.Text = UserData.username;
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
         [DllImport("user32.dll")]
@@ -49,7 +44,7 @@ namespace MonkeSwap_Desktop.View
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Close();
         }
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
@@ -59,29 +54,14 @@ namespace MonkeSwap_Desktop.View
 
         private void btnMaximize_Click(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Normal)
+            if (this.WindowState == WindowState.Normal)
             {
-                this.WindowState=WindowState.Maximized;                
+                this.WindowState = WindowState.Maximized;
             }
             else
             {
                 this.WindowState = WindowState.Normal;
             }
-        }
-
-        private void logOutButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoginView login = new LoginView();
-            login.Show();
-            Window.GetWindow(this).Close();
-        }
-
-        private void profilePictureInTopRightButton_Click(object sender, RoutedEventArgs e)
-        {
-            usersRadioButton.IsChecked = false;
-            itemsRadioButton.IsChecked = false;
-            settingsRadioButton.IsChecked = false;
-            profileRadioButton.IsChecked = true;
         }
     }
 }

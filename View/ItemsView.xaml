@@ -58,7 +58,7 @@
               Margin="0,0,15,10"/>
             </Grid>
 
-            <!--Users Datagrid-->
+            <!--Items Datagrid-->
             <DataGrid Style="{DynamicResource DataGridStyle1}"
                   CellStyle="{DynamicResource DataGridCellStyle1}"
                   ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
@@ -66,13 +66,25 @@
                   Grid.Row="1"
                   x:Name="dtGrid"
                   ItemsSource="{Binding UsersCollection}"
-                  HorizontalScrollBarVisibility="Disabled" Margin="0,10,0,134">
+                  HorizontalScrollBarVisibility="Disabled" 
+                  Margin="0,10,0,134">
 
                 <DataGrid.Columns>
 
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding id}"/>
                     <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding title}"/>
                     <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding reports}"/>
+                    <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto" CanUserResize="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Style="{StaticResource gridOpenButton}" x:Name="openButton" Click="openButton_Click">
+                                        <fa:IconImage Icon="BookOpen" Style="{StaticResource gridButtonIcon}"/>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
 
                 </DataGrid.Columns>
             </DataGrid>
