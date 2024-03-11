@@ -95,6 +95,7 @@ namespace MonkeSwap_Desktop.View
                         UserData.role = user.role;
                         UserData.tradesCompleted = user.tradesCompleted;
                         UserData.dateOfRegistration = user.dateOfRegistration;
+
                         if(user.role=="ADMIN")
                         {
                             MainView main = new MainView();

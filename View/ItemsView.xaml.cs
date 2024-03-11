@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using MonkeSwap_Desktop.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace MonkeSwap_Desktop.View
     {
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
-        private List<CurrentUser> itemList;
+        private List<ItemData> itemList;
 
         public ItemsView()
         {
@@ -38,7 +39,7 @@ namespace MonkeSwap_Desktop.View
                 var result = client.GetAsync(endpoint).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
-                itemList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
+                itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
                 dtGrid.ItemsSource = itemList;
             }
         }
@@ -56,8 +57,8 @@ namespace MonkeSwap_Desktop.View
                         var result2 = client.GetAsync(endpoint2).Result;
                         var json2 = result2.Content.ReadAsStringAsync().Result;
 
-                        CurrentUser itemFiltered = JsonConvert.DeserializeObject<CurrentUser>(json2);
-                        List<CurrentUser> itemFilteredList = new List<CurrentUser>() { itemFiltered };
+                        ItemData itemFiltered = JsonConvert.DeserializeObject<ItemData>(json2);
+                        List<ItemData> itemFilteredList = new List<ItemData>() { itemFiltered };
                         dtGrid.ItemsSource = itemFilteredList;
                     }
                 }

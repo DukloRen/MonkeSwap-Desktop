@@ -8,14 +8,15 @@ namespace MonkeSwap_Desktop.Model
 {
     internal class ItemData
     {
-        public static long id { get; set; }
-        public static string title { get; set; }
-        public static string itemPicture { get; set; }
-        public static string description { get; set; }
-        public static string views { get; set; }
-        public static string state { get; set; }
-        public static string category { get; set; }
-        public static string priceTier { get; set; }
-        //public static string reports { get; set; }
+        public  long id { get; set; }
+        public  string title { get; set; }
+        public  string itemPicture { get; set; }
+        public string description { get; set; }
+        public  int views { get; set; }
+        public  string state { get; set; }
+        public  string category { get; set; }
+        public  string priceTier { get; set; }
+        public  int reports { get; set; }
+
     }
 }

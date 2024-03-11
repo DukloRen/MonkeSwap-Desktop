@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Transparent">
     
-    <Control.Resources>
+        <Control.Resources>
             <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         </Control.Resources>
 
@@ -41,7 +41,7 @@
                       IsHitTestVisible="False"
                       Panel.ZIndex="1"
                       Text="Search in IDs"
-                      Visibility="{Binding ElementName=txtFilter, Path=Text.s, Converter={StaticResource BoolToVis}}"/>
+                      Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
 
                 <TextBox x:Name="txtFilter"
                      Style="{StaticResource textboxFilter}"
@@ -72,7 +72,7 @@
 
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding id}"/>
                     <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding title}"/>
-                    <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" Binding="{Binding reports}"/>
+                    <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding reports}"/>
 
                 </DataGrid.Columns>
             </DataGrid>
