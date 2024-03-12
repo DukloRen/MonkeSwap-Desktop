@@ -50,6 +50,14 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <TextBlock x:Name="asd"
+                        Text="asd"
+           Foreground="{StaticResource titleColor2}"
+           FontSize="16"
+           FontFamily="Montserrat"
+           FontWeight="Medium"
+           VerticalAlignment="Center"/>
+                    
                     <!--Control bar-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"

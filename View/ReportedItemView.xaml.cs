@@ -1,7 +1,9 @@
 ﻿using MonkeSwap_Desktop.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +11,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -22,12 +26,28 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class ReportedItemView : Window
     {
+        private string baseURL = LoginView.baseURL;
+        private string token = CurrentUser.userToken;
+        //private List<ItemData> itemList;
+        private ItemsView iv = new ItemsView();
         public ReportedItemView()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-        }
 
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var endpoint = new Uri(baseURL + "admin/user/" + iv.selectedItemID);
+                var result = client.GetAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                asd.Text = iv.selectedItemID;
+
+                //ItemData itemFiltered = JsonConvert.DeserializeObject<ItemData>(json);
+                //asd.Text = itemFiltered.category;
+            }
+        }
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
@@ -37,7 +57,7 @@ namespace MonkeSwap_Desktop.View
             SendMessage(helper.Handle, 161, 2, 0);
         }
 
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
+        private void pnlControlBar_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }

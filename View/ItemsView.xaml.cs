@@ -73,12 +73,13 @@ namespace MonkeSwap_Desktop.View
             }
         }
 
+        public string selectedItemID;
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
+            ItemData selectedRowObj = dtGrid.SelectedItem as ItemData;
+            selectedItemID = selectedRowObj.id.ToString();
+
             ReportedItemView reportedItem = new ReportedItemView();
-
-            
-
             reportedItem.Show();
         }
     }
