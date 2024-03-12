@@ -33,6 +33,7 @@ namespace MonkeSwap_Desktop.View
     public partial class LoginView : Window
     {
         public static string baseURL = "http://localhost:8080/";
+        private static string result_string;
 
         public LoginView()
         {
@@ -65,16 +66,17 @@ namespace MonkeSwap_Desktop.View
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                    var newPostJson = JsonConvert.SerializeObject(new { email = txtUser.Text, password = txtPass.Password });
+                    var newPostJson = JsonConvert.SerializeObject(new { email = txtEmail.Text, password = txtPass.Password });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var result = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
+                    result_string = result;
                     var token = JsonConvert.DeserializeObject<CurrentUser>(result).token;
 
                     CurrentUser.userToken = token;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    txtErrorMessage.Text = ex.Message;
+                    txtErrorMessage.Text = result_string;
                 }
 
                 try
@@ -84,6 +86,7 @@ namespace MonkeSwap_Desktop.View
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     var endpoint = new Uri(baseURL + "user");
                     var result = client.GetAsync(endpoint).Result;
+                    result_string = result.ToString();
                     var json = result.Content.ReadAsStringAsync().Result;
 
                     if (result.IsSuccessStatusCode)
@@ -108,9 +111,9 @@ namespace MonkeSwap_Desktop.View
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    txtErrorMessage.Text = ex.Message;
+                    txtErrorMessage.Text = result_string;
                 }
             }
         }

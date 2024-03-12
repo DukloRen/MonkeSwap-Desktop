@@ -141,7 +141,7 @@
                                FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
 
-                    <TextBlock Text="Username"
+                    <TextBlock Text="Email"
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
@@ -149,7 +149,7 @@
                                Margin="0,35,0,0"
                                />
 
-                    <TextBox x:Name="txtUser"
+                    <TextBox x:Name="txtEmail"
                              FontSize="13"
                              FontWeight="Medium"
                              FontFamily="Montserrat"

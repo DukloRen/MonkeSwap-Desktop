@@ -90,41 +90,44 @@ namespace MonkeSwap_Desktop.View
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentUser classObj = dtGrid.SelectedItem as CurrentUser;
-
-            using (var client = new HttpClient())
+            if (classObj.role=="USER")
             {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var endpoint = new Uri(baseURL + "admin/user/" + classObj.id.ToString());
-                var result = client.DeleteAsync(endpoint).Result;
-                
-                if (result.IsSuccessStatusCode)
+                string messageBoxText = "Are you sure you want to delete this user?";
+                string caption = "Delete User";
+                MessageBoxButton button = MessageBoxButton.YesNo;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+                switch (msgbox_result)
                 {
-                    string messageBoxText = "Are you sure you want to delete this user?";
-                    string caption = "Delete User";
-                    MessageBoxButton button = MessageBoxButton.YesNoCancel;
-                    MessageBoxImage icon = MessageBoxImage.Warning;
-                    System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+                    case MessageBoxResult.Yes:
+                        using (var client = new HttpClient())
+                        {
+                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                            var endpoint = new Uri(baseURL + "admin/user/" + classObj.id.ToString());
+                            var result = client.DeleteAsync(endpoint).Result;
+                        }
+                        break;
+                    case MessageBoxResult.No:
+                        break;
                 }
-                else
-                {
-                    string messageBoxText = "Error removing this user.";
-                    string caption = "Error";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Warning;
-                    System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-                }
-
                 using (var client2 = new HttpClient())
                 {
-
                     client2.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     var endpoint2 = new Uri(baseURL + "admin/users");
-                    var result2 = client.GetAsync(endpoint2).Result;
+                    var result2 = client2.GetAsync(endpoint2).Result;
                     var json2 = result2.Content.ReadAsStringAsync().Result;
 
                     userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json2);
                     dtGrid.ItemsSource = userList;
                 }
+            }
+            else
+            {
+                string messageBoxText = "Error removing this user.";
+                string caption = "Error";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
             }
         }
     }
