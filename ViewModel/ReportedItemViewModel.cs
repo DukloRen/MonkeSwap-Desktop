@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace MonkeSwap_Desktop.ViewModel
 {
-    internal class ReportedItemViewModel : ViewModelBase
+    public class ReportedItemViewModel : ViewModelBase
     {
+        public string ImagePath { get; set; }
 
+        public ReportedItemViewModel()
+        {
+            ImagePath = "https://i.imgur.com/61LN9Ye.jpeg";
+        }
     }
 }

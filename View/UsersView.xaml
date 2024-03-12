@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
              xmlns:viewModel="clr-namespace:MonkeSwap_Desktop.ViewModel"
-             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" d:DataContext="{d:DesignInstance Type=viewModel:UsersViewModel}"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             d:DataContext="{d:DesignInstance Type=viewModel:UsersViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Transparent">

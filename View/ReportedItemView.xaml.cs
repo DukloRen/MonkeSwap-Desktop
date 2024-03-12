@@ -1,4 +1,5 @@
 ﻿using MonkeSwap_Desktop.Model;
+using MonkeSwap_Desktop.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.WebRequestMethods;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace MonkeSwap_Desktop.View
@@ -28,11 +30,14 @@ namespace MonkeSwap_Desktop.View
     {
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
-        //private List<ItemData> itemList;
         private ItemsView iv = new ItemsView();
+
         public ReportedItemView()
         {
             InitializeComponent();
+
+            DataContext=new ReportedItemViewModel();
+
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
             using (var client = new HttpClient())

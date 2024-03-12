@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MonkeSwap_Desktop.View"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-        xmlns:viewModel="clr-namespace:MonkeSwap_Desktop.ViewModel"
+        xmlns:viewModel="clr-namespace:MonkeSwap_Desktop.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewModel:ReportedItemViewModel}"
         mc:Ignorable="d"
         Title="MainWindowView" Height="600" Width="900"
         WindowStartupLocation="CenterScreen"
@@ -42,11 +43,11 @@
                 <Grid>
 
                     <Grid.RowDefinitions>
-                        <!--Control bar-->
+                        <!--Control section-->
                         <RowDefinition Height="25"/>
-                        <!--Header / Caption-->
-                        <RowDefinition Height="35"/>
-                        <!--Content section / Child views-->
+                        <!--Content section-->
+                        <RowDefinition Height="500"/>
+                        <!--Button section-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
@@ -58,7 +59,7 @@
            FontWeight="Medium"
            VerticalAlignment="Center"/>
                     
-                    <!--Control bar-->
+                    <!--Control section-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
                                 Orientation="Horizontal"
@@ -91,8 +92,41 @@
 
                     </StackPanel>
 
-                    <!--Header / Caption-->
+                    <!--Content section-->
+                    <Image Source="{Binding ImagePath}"
+                           Grid.Row="1"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Width="450"
+                           Height="350"/>
+                    
+                    
+                    <!--Button section-->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
 
+                        <Button x:Name="btnMaximize2"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="btnMaximize_Click"
+                                Grid.Row="2"
+                                Grid.Column="0">
+                            <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+
+                        <Button x:Name="btnMinimize2"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="btnMinimize_Click"
+                                Grid.Row="2"
+                                Grid.Column="1">
+                            <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+                        </Button>
+                        
+                    </Grid>
                 </Grid>
 
             </Border>
