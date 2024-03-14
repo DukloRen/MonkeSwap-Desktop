@@ -29,7 +29,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-
+            
             <!--Main section-->
             <Border CornerRadius="10,10,10,10"
                     Grid.Column="1">
@@ -50,15 +50,72 @@
                         <!--Button section-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical" Grid.Row="1">
+                        <TextBlock x:Name="asd"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd1"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd2"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd3"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd4"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd5"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd6"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd7"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                        <TextBlock x:Name="asd8"
+             Text="asd"
+Foreground="{StaticResource titleColor2}"
+FontSize="16"
+FontFamily="Montserrat"
+FontWeight="Medium"
+VerticalAlignment="Center"/>
+                    </StackPanel>
 
-                    <TextBlock x:Name="asd"
-                        Text="asd"
-           Foreground="{StaticResource titleColor2}"
-           FontSize="16"
-           FontFamily="Montserrat"
-           FontWeight="Medium"
-           VerticalAlignment="Center"/>
-                    
                     <!--Control section-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"

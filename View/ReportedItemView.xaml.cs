@@ -28,30 +28,27 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class ReportedItemView : Window
     {
-        private string baseURL = LoginView.baseURL;
-        private string token = CurrentUser.userToken;
-        private ItemsView iv = new ItemsView();
+        private readonly string baseURL = LoginView.baseURL;
+        private readonly string token = CurrentUser.userToken;
+        private readonly ItemsView iv = new ItemsView();
 
-        public ReportedItemView()
+        public ReportedItemView(long selectedItemID, string selectedItemTitle, string selectedItemPicture, string selectedItemDescription, int selectedItemViews, string selectedItemState, string selectedItemCategory, string selectedItemPriceTier, int selectedItemReports)
         {
             InitializeComponent();
 
-            DataContext=new ReportedItemViewModel();
+            //DataContext = new ReportedItemViewModel();
 
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var endpoint = new Uri(baseURL + "admin/user/" + iv.selectedItemID);
-                var result = client.GetAsync(endpoint).Result;
-                var json = result.Content.ReadAsStringAsync().Result;
-
-                asd.Text = iv.selectedItemID;
-
-                //ItemData itemFiltered = JsonConvert.DeserializeObject<ItemData>(json);
-                //asd.Text = itemFiltered.category;
-            }
+            asd.Text = selectedItemID.ToString();
+            asd1.Text = selectedItemTitle;
+            asd2.Text = selectedItemPicture;
+            asd3.Text = selectedItemDescription;
+            asd4.Text = selectedItemViews.ToString();
+            asd5.Text = selectedItemState;
+            asd6.Text = selectedItemCategory;
+            asd7.Text = selectedItemPriceTier;
+            asd8.Text = selectedItemReports.ToString();
         }
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);

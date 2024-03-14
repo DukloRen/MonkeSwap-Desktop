@@ -27,6 +27,8 @@ namespace MonkeSwap_Desktop.View
         private string token = CurrentUser.userToken;
         private List<ItemData> itemList;
 
+        public event EventHandler<string> ValuePassed;
+
         public ItemsView()
         {
             InitializeComponent();
@@ -73,13 +75,19 @@ namespace MonkeSwap_Desktop.View
             }
         }
 
-        public string selectedItemID;
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
             ItemData selectedRowObj = dtGrid.SelectedItem as ItemData;
-            selectedItemID = selectedRowObj.id.ToString();
-
-            ReportedItemView reportedItem = new ReportedItemView();
+            long selectedItemID = selectedRowObj.id;
+            string selectedItemTitle = selectedRowObj.title;
+            string selectedItemPicture = selectedRowObj.itemPicture;
+            string selectedItemDescription = selectedRowObj.description;
+            int selectedItemViews = selectedRowObj.views;
+            string selectedItemState = selectedRowObj.state;
+            string selectedItemCategory = selectedRowObj.category;
+            string selectedItemPriceTier = selectedRowObj.priceTier;
+            int selectedItemReports = selectedRowObj.reports;
+            ReportedItemView reportedItem = new ReportedItemView(selectedItemID, selectedItemTitle, selectedItemPicture, selectedItemDescription, selectedItemViews, selectedItemState, selectedItemCategory, selectedItemPriceTier, selectedItemReports);
             reportedItem.Show();
         }
     }
