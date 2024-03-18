@@ -73,6 +73,7 @@
 
                     <DataGridTextColumn Header="ID" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding id}"/>
                     <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding title}"/>
+                    <DataGridTextColumn Header="State" IsReadOnly="True" Width="*" Binding="{Binding state}"/>
                     <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding reports.Count}"/>
                     <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>

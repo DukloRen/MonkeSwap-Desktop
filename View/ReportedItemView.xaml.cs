@@ -28,11 +28,19 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class ReportedItemView : Window
     {
+        private string baseURL = LoginView.baseURL;
+        private string token = CurrentUser.userToken;
+        //private List<ItemData> itemList;
+        private string selectedItemIDGlobal;
+        private string selectedItemStateGlobal;
         public ReportedItemView(long selectedItemID, string selectedItemTitle, string selectedItemPicture, string selectedItemDescription, int selectedItemViews, string selectedItemState, string selectedItemCategory, string selectedItemPriceTier, long[] selectedItemReports, string selectedItemUserID)
         {
             InitializeComponent();
 
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+
+            selectedItemIDGlobal = selectedItemID.ToString();
+            selectedItemStateGlobal = selectedItemState;
 
             idTxt.Text = "ID: " + selectedItemID.ToString();
             titleTxt.Text = selectedItemTitle;
@@ -85,6 +93,50 @@ namespace MonkeSwap_Desktop.View
             {
                 this.WindowState = WindowState.Normal;
             }
+        }
+
+        private void switchStateButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                if (selectedItemStateGlobal=="ENABLED")
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
+                    var result = client.PutAsync(endpoint, new StringContent("DISABLED")).Result;
+
+                    //stateTxt.Text = "State: " + selectedItemStateGlobal;
+                }
+                else
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
+                    var result = client.PutAsync(endpoint, new StringContent("ENABLED")).Result;
+                }
+            }
+        }
+
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
+                var result = client.DeleteAsync(endpoint).Result;
+            }
+            this.Close();
+            /*using (var client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var endpoint = new Uri(baseURL + "admin/items");
+                var result = client.GetAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
+                ItemsView iv = new ItemsView();
+                iv.dtGrid.ItemsSource = itemList;
+            }*/
         }
     }
 }

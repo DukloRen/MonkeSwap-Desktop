@@ -28,8 +28,6 @@ namespace MonkeSwap_Desktop.View
         private string token = CurrentUser.userToken;
         private List<ItemData> itemList;
 
-        public event EventHandler<string> ValuePassed;
-
         public ItemsView()
         {
             InitializeComponent();

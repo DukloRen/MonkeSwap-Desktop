@@ -126,22 +126,22 @@
             <!--Button section-->
                 <Button x:Name="switchStateButton"
                                 Style="{StaticResource gridEditButton}"
-                                Click="btnMaximize_Click"
+                                Click="switchStateButton_Click"
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 Width="250"
                                 Height="50">
-                    <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+                <fa:IconImage Icon="Exchange" Style="{StaticResource controlButtonIcon}" Width="20" Height="20"/>
                 </Button>
 
-            <Button x:Name="deleteButton"
+            <Button x:Name="removeButton"
                                 Style="{StaticResource gridRemoveButton}"
-                                Click="btnMinimize_Click"
+                                Click="removeButton_Click"
                                 Grid.Row="2"
                                 Grid.Column="1"
                                 Width="250"
                                 Height="50">
-                <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+                <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}" Width="20" Height="20"/>
             </Button>
         </Grid>
 
