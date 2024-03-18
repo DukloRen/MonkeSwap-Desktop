@@ -14,7 +14,7 @@
         Background="Transparent"
         AllowsTransparency="True">
 
-    <Border CornerRadius="10"
+    <Border CornerRadius="10,10,10,10"
             BorderThickness="1">
 
         <Border.BorderBrush>
@@ -24,101 +24,30 @@
                 <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="0"/>
+            </LinearGradientBrush>
+        </Border.Background>
 
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            
-            <!--Main section-->
-            <Border CornerRadius="10,10,10,10"
-                    Grid.Column="1">
+            <Grid.RowDefinitions>
+                <!--Control section-->
+                <RowDefinition Height="25"/>
+                <!--Content section-->
+                <RowDefinition Height="500"/>
+                <!--Button section-->
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
-                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="0"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Grid>
-
-                    <Grid.RowDefinitions>
-                        <!--Control section-->
-                        <RowDefinition Height="25"/>
-                        <!--Content section-->
-                        <RowDefinition Height="500"/>
-                        <!--Button section-->
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Orientation="Vertical" Grid.Row="1">
-                        <TextBlock x:Name="asd"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd1"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd2"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd3"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd4"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd5"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd6"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd7"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                        <TextBlock x:Name="asd8"
-             Text="asd"
-Foreground="{StaticResource titleColor2}"
-FontSize="16"
-FontFamily="Montserrat"
-FontWeight="Medium"
-VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                    <!--Control section-->
-                    <StackPanel x:Name="pnlControlBar"
+            <!--Control section-->
+            <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
+                                Grid.ColumnSpan="2"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
@@ -126,68 +55,94 @@ VerticalAlignment="Center"/>
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
                                 MouseEnter="pnlControlBar_MouseEnter">
 
-                        <Button x:Name="btnClose"
+                <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource color4}"
                                 Click="btnClose_Click">
-                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                    <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
 
-                        <Button x:Name="btnMaximize"
+                <Button x:Name="btnMaximize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource color6}"
                                 Click="btnMaximize_Click">
-                            <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                    <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
 
-                        <Button x:Name="btnMinimize"
+                <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource color6}"
                                 Click="btnMinimize_Click">
-                            <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                    <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
 
-                    </StackPanel>
+            </StackPanel>
 
-                    <!--Content section-->
-                    <Image Source="{Binding ImagePath}"
-                           Grid.Row="1"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Width="450"
-                           Height="350"/>
-                    
-                    
-                    <!--Button section-->
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+            <!--Content section-->
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="0">
+                <Border CornerRadius="10,10,10,10"
+                        BorderThickness="5"
+                        Margin="15,0"
+                        Width="420"
+                        Height="350">
 
-                        <Button x:Name="btnMaximize2"
-                                Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="{StaticResource primaryBackColor1}"/>
+                    </Border.BorderBrush>
+
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" x:Name="pic"/>
+                    </Border.Background>
+                </Border>
+
+                <TextBlock x:Name="userIDTxt"
+                           Margin="15,15,0,10"
+                           Padding="0"
+               Style="{StaticResource itemTextBlockStyle}"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="15,0">
+                <TextBlock x:Name="titleTxt"
+                           Text="test"
+                           FontSize="26"
+                           Padding="0,0,0,20"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="idTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="descriptionTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="viewsTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="stateTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="categoryTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="pricetierTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+                <TextBlock x:Name="reportsTxt"
+               Style="{StaticResource itemTextBlockStyle}"/>
+            </StackPanel>
+
+            <!--Button section-->
+                <Button x:Name="switchStateButton"
+                                Style="{StaticResource gridEditButton}"
                                 Click="btnMaximize_Click"
                                 Grid.Row="2"
-                                Grid.Column="0">
-                            <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                                Grid.Column="0"
+                                Width="250"
+                                Height="50">
+                    <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+                </Button>
 
-                        <Button x:Name="btnMinimize2"
-                                Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+            <Button x:Name="deleteButton"
+                                Style="{StaticResource gridRemoveButton}"
                                 Click="btnMinimize_Click"
                                 Grid.Row="2"
-                                Grid.Column="1">
-                            <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
-                        
-                    </Grid>
-                </Grid>
-
-            </Border>
-
+                                Grid.Column="1"
+                                Width="250"
+                                Height="50">
+                <fa:IconImage Icon="DiamondTurnRight" Style="{StaticResource controlButtonIcon}"/>
+            </Button>
         </Grid>
 
     </Border>

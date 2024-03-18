@@ -1,4 +1,5 @@
 ﻿using MonkeSwap_Desktop.Model;
+using MonkeSwap_Desktop.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -86,8 +87,9 @@ namespace MonkeSwap_Desktop.View
             string selectedItemState = selectedRowObj.state;
             string selectedItemCategory = selectedRowObj.category;
             string selectedItemPriceTier = selectedRowObj.priceTier;
-            int selectedItemReports = selectedRowObj.reports;
-            ReportedItemView reportedItem = new ReportedItemView(selectedItemID, selectedItemTitle, selectedItemPicture, selectedItemDescription, selectedItemViews, selectedItemState, selectedItemCategory, selectedItemPriceTier, selectedItemReports);
+            long[] selectedItemReports = selectedRowObj.reports;
+            string selectedItemUserID = selectedRowObj.userID;
+            ReportedItemView reportedItem = new ReportedItemView(selectedItemID, selectedItemTitle, selectedItemPicture, selectedItemDescription, selectedItemViews, selectedItemState, selectedItemCategory, selectedItemPriceTier, selectedItemReports, selectedItemUserID);
             reportedItem.Show();
         }
     }

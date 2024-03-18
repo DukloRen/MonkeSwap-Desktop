@@ -16,7 +16,8 @@ namespace MonkeSwap_Desktop.Model
         public  string state { get; set; }
         public  string category { get; set; }
         public  string priceTier { get; set; }
-        public  int reports { get; set; }
+        public  long[] reports { get; set; }
+        public  string userID { get; set; }
 
     }
 }

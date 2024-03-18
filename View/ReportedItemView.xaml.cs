@@ -28,27 +28,28 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class ReportedItemView : Window
     {
-        private readonly string baseURL = LoginView.baseURL;
-        private readonly string token = CurrentUser.userToken;
-        private readonly ItemsView iv = new ItemsView();
-
-        public ReportedItemView(long selectedItemID, string selectedItemTitle, string selectedItemPicture, string selectedItemDescription, int selectedItemViews, string selectedItemState, string selectedItemCategory, string selectedItemPriceTier, int selectedItemReports)
+        public ReportedItemView(long selectedItemID, string selectedItemTitle, string selectedItemPicture, string selectedItemDescription, int selectedItemViews, string selectedItemState, string selectedItemCategory, string selectedItemPriceTier, long[] selectedItemReports, string selectedItemUserID)
         {
             InitializeComponent();
 
-            //DataContext = new ReportedItemViewModel();
-
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            asd.Text = selectedItemID.ToString();
-            asd1.Text = selectedItemTitle;
-            asd2.Text = selectedItemPicture;
-            asd3.Text = selectedItemDescription;
-            asd4.Text = selectedItemViews.ToString();
-            asd5.Text = selectedItemState;
-            asd6.Text = selectedItemCategory;
-            asd7.Text = selectedItemPriceTier;
-            asd8.Text = selectedItemReports.ToString();
+            idTxt.Text = "ID: " + selectedItemID.ToString();
+            titleTxt.Text = selectedItemTitle;
+
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(selectedItemPicture); ;
+            bitmapImage.EndInit();
+            pic.ImageSource = bitmapImage;
+
+            descriptionTxt.Text = "Description: " + selectedItemDescription;
+            viewsTxt.Text = "Views: " + selectedItemViews.ToString();
+            stateTxt.Text = "State: " + selectedItemState;
+            categoryTxt.Text = "Category: " + selectedItemCategory;
+            pricetierTxt.Text = "Price tier: " + selectedItemPriceTier;
+            reportsTxt.Text = "Reports: " + selectedItemReports.Count();
+            userIDTxt.Text = "User ID: " + selectedItemUserID;
         }
         [DllImport("user32.dll")]
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
