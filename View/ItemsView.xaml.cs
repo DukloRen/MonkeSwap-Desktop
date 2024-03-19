@@ -78,17 +78,23 @@ namespace MonkeSwap_Desktop.View
         {
             ItemData selectedRowObj = dtGrid.SelectedItem as ItemData;
             long selectedItemID = selectedRowObj.id;
-            string selectedItemTitle = selectedRowObj.title;
-            string selectedItemPicture = selectedRowObj.itemPicture;
-            string selectedItemDescription = selectedRowObj.description;
-            int selectedItemViews = selectedRowObj.views;
-            string selectedItemState = selectedRowObj.state;
-            string selectedItemCategory = selectedRowObj.category;
-            string selectedItemPriceTier = selectedRowObj.priceTier;
-            long[] selectedItemReports = selectedRowObj.reports;
-            string selectedItemUserID = selectedRowObj.userID;
-            ReportedItemView reportedItem = new ReportedItemView(selectedItemID, selectedItemTitle, selectedItemPicture, selectedItemDescription, selectedItemViews, selectedItemState, selectedItemCategory, selectedItemPriceTier, selectedItemReports, selectedItemUserID);
+
+            ReportedItemView reportedItem = new ReportedItemView(selectedItemID);
             reportedItem.Show();
+        }
+
+        public void loadData()
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var endpoint = new Uri(baseURL + "admin/items");
+                var result = client.GetAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
+                dtGrid.ItemsSource = itemList;
+            }
         }
     }
 }

@@ -84,7 +84,7 @@
                                     <Button Style="{StaticResource gridEditButton}" x:Name="editButton" Click="editButton_Click">
                                         <fa:IconImage Icon="Exchange" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0" x:Name="removeButton" Click="removeButton_Click">
+                                    <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0" x:Name="deleteButton" Click="deleteButton_Click">
                                         <fa:IconImage Icon="Trash" Style="{StaticResource gridButtonIcon}"/>
                                     </Button>
                                 </StackPanel>

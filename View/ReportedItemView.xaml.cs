@@ -30,36 +30,21 @@ namespace MonkeSwap_Desktop.View
     {
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
-        //private List<ItemData> itemList;
         private string selectedItemIDGlobal;
         private string selectedItemStateGlobal;
-        public ReportedItemView(long selectedItemID, string selectedItemTitle, string selectedItemPicture, string selectedItemDescription, int selectedItemViews, string selectedItemState, string selectedItemCategory, string selectedItemPriceTier, long[] selectedItemReports, string selectedItemUserID)
+        public ReportedItemView(long selectedItemID)
         {
             InitializeComponent();
 
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
             selectedItemIDGlobal = selectedItemID.ToString();
-            selectedItemStateGlobal = selectedItemState;
 
-            idTxt.Text = "ID: " + selectedItemID.ToString();
-            titleTxt.Text = selectedItemTitle;
-
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(selectedItemPicture); ;
-            bitmapImage.EndInit();
-            pic.ImageSource = bitmapImage;
-
-            descriptionTxt.Text = "Description: " + selectedItemDescription;
-            viewsTxt.Text = "Views: " + selectedItemViews.ToString();
-            stateTxt.Text = "State: " + selectedItemState;
-            categoryTxt.Text = "Category: " + selectedItemCategory;
-            pricetierTxt.Text = "Price tier: " + selectedItemPriceTier;
-            reportsTxt.Text = "Reports: " + selectedItemReports.Count();
-            userIDTxt.Text = "User ID: " + selectedItemUserID;
+            loadSpecificItemData();
         }
+
         [DllImport("user32.dll")]
+
         public static extern IntPtr SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -83,37 +68,17 @@ namespace MonkeSwap_Desktop.View
             this.WindowState = WindowState.Minimized;
         }
 
-        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        public void switchStateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (this.WindowState == WindowState.Normal)
-            {
-                this.WindowState = WindowState.Maximized;
-            }
-            else
-            {
-                this.WindowState = WindowState.Normal;
-            }
-        }
-
-        private void switchStateButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (var client = new HttpClient())
-            {
                 if (selectedItemStateGlobal=="ENABLED")
                 {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
-                    var result = client.PutAsync(endpoint, new StringContent("DISABLED")).Result;
-
-                    //stateTxt.Text = "State: " + selectedItemStateGlobal;
+                       switchState("DISABLED");
                 }
                 else
                 {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
-                    var result = client.PutAsync(endpoint, new StringContent("ENABLED")).Result;
+                       switchState("ENABLED");
                 }
-            }
+            loadSpecificItemData();
         }
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
@@ -125,18 +90,60 @@ namespace MonkeSwap_Desktop.View
                 var result = client.DeleteAsync(endpoint).Result;
             }
             this.Close();
-            /*using (var client = new HttpClient())
-            {
+        }
 
+        private void loadSpecificItemData()
+        {
+            using (var client = new HttpClient())
+            {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var endpoint = new Uri(baseURL + "admin/items");
+                var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
                 var result = client.GetAsync(endpoint).Result;
                 var json = result.Content.ReadAsStringAsync().Result;
 
+                ItemData reportedItem = JsonConvert.DeserializeObject<ItemData>(json);
+
+                selectedItemStateGlobal = reportedItem.state;
+
+                var bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(reportedItem.itemPicture); ;
+                bitmapImage.EndInit();
+                pic.ImageSource = bitmapImage;
+
+                idTxt.Text = "ID: " + reportedItem.id.ToString();
+                titleTxt.Text = reportedItem.title;
+                descriptionTxt.Text = "Description: " + reportedItem.description;
+                viewsTxt.Text = "Views: " + reportedItem.views.ToString();
+                stateTxt.Text = "State: " + reportedItem.state;
+                categoryTxt.Text = "Category: " + reportedItem.category;
+                pricetierTxt.Text = "Price tier: " + reportedItem.priceTier;
+                reportsTxt.Text = "Reports: " + reportedItem.reports.Count();
+                userIDTxt.Text = "User ID: " + reportedItem.userID;
+
+                /*ItemsView iv = new ItemsView();
+                iv.loadData();*/
+
+                /*ItemsView iv = new ItemsView();
+                List<ItemData> itemList;
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                endpoint = new Uri(baseURL + "admin/items");
+                result = client.GetAsync(endpoint).Result;
+                json = result.Content.ReadAsStringAsync().Result;
+
                 itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
-                ItemsView iv = new ItemsView();
-                iv.dtGrid.ItemsSource = itemList;
-            }*/
+                iv.dtGrid.ItemsSource = itemList;*/
+            }
+        }
+
+        private void switchState(string notCurrentItemState)
+        {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
+                    var result = client.PutAsync(endpoint, new StringContent(notCurrentItemState)).Result;
+                }
         }
     }
 }

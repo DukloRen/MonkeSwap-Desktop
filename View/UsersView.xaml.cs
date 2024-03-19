@@ -36,27 +36,66 @@ namespace MonkeSwap_Desktop.View
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
         private List<CurrentUser> userList;
+        private string resultGlobal;
 
         public UsersView()
         {
             InitializeComponent();
 
-            using (var client = new HttpClient())
-            {
-
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/users");
-                    var result = client.GetAsync(endpoint).Result;
-                    var json = result.Content.ReadAsStringAsync().Result;
-
-                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
-                    dtGrid.ItemsSource = userList;
-            }
+            loadData();
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtFilter.Text!="")
+            filteredLoadData();
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            if (selectedRowObj.role == "USER")
+            {
+                switchRole("ADMIN", "Are you sure you want to promote this User to Admin?", "Promote User");  
+            }
+            else
+            {
+                switchRole("USER", "Are you sure you want to demote this Admin to User?", "Demote Admin");
+            }
+            filteredLoadData();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            if (selectedRowObj.role=="USER")
+            {
+                deleteUserOrAdmin("Are you sure you want to delete this user?", "Delete User");
+            }
+            else
+            {
+                deleteUserOrAdmin("Are you sure you want to delete this Admin?", "Delete Admin");
+            }
+            loadData();
+        }
+
+        private void loadData()
+        {
+            using (var client = new HttpClient())
+            {
+
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var endpoint = new Uri(baseURL + "admin/users");
+                var result = client.GetAsync(endpoint).Result;
+                var json = result.Content.ReadAsStringAsync().Result;
+
+                userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
+                dtGrid.ItemsSource = userList;
+            }
+        }
+
+        private void filteredLoadData()
+        {
+            if (txtFilter.Text != "")
             {
                 try
                 {
@@ -68,132 +107,72 @@ namespace MonkeSwap_Desktop.View
                         var json = result.Content.ReadAsStringAsync().Result;
 
                         CurrentUser userFiltered = JsonConvert.DeserializeObject<CurrentUser>(json);
-                        List<CurrentUser> userFilteredList = new List<CurrentUser>() {userFiltered};
+                        List<CurrentUser> userFilteredList = new List<CurrentUser>() { userFiltered };
                         dtGrid.ItemsSource = userFilteredList;
                     }
                 }
                 catch (Exception)
                 {
-                    dtGrid.ItemsSource=null;
+                    dtGrid.ItemsSource = null;
                 }
             }
             else
             {
-                    dtGrid.ItemsSource = userList;
+                loadData();
             }
         }
 
-        private void editButton_Click(object sender, RoutedEventArgs e)
+        private void switchRole(string notCurrentRole, string messageBoxText, string caption)
         {
             CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
-            if (selectedRowObj.role == "USER")
+            switch (messageBoxCreator(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning))
             {
-                string messageBoxText = "Are you sure you want to promote this User to Admin?";
-                string caption = "Promote User";
-                MessageBoxButton button = MessageBoxButton.YesNo;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-                switch (msgbox_result)
-                {
-                    case MessageBoxResult.Yes:
-                        using (var client = new HttpClient())
+                case MessageBoxResult.Yes:
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                        var endpoint = new Uri(baseURL + "admin/user/" + selectedRowObj.id.ToString());
+                        var result = client.PutAsync(endpoint, new StringContent(notCurrentRole)).Result;
+                        if (!result.IsSuccessStatusCode)
                         {
-                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                            var endpoint = new Uri(baseURL + "admin/user/" + selectedRowObj.id.ToString());
-                            var result = client.PutAsync(endpoint,new StringContent("ADMIN")).Result;
+                            resultGlobal = result.Content.ReadAsStringAsync().Result;
+                            messageBoxCreator(resultGlobal, "Result", MessageBoxButton.OK, MessageBoxImage.None);
                         }
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/users");
-                    var result = client.GetAsync(endpoint).Result;
-                    var json = result.Content.ReadAsStringAsync().Result;
-                    
-
-                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
-                    dtGrid.ItemsSource = userList;
-                }
-            }
-            else
-            {
-                string messageBoxText = "Are you sure you want to demote this Admin to User?";
-                string caption = "Demote Admin";
-                MessageBoxButton button = MessageBoxButton.YesNo;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-                switch (msgbox_result)
-                {
-                    case MessageBoxResult.Yes:
-                        using (var client = new HttpClient())
-                        {
-                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                            var endpoint = new Uri(baseURL + "admin/user/" + selectedRowObj.id.ToString());
-                            var result = client.PutAsync(endpoint, new StringContent("USER")).Result;
-                        }
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint = new Uri(baseURL + "admin/users");
-                    var result = client.GetAsync(endpoint).Result;
-                    var json = result.Content.ReadAsStringAsync().Result;
-
-
-                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
-                    dtGrid.ItemsSource = userList;
-                }
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
         }
 
-        private void removeButton_Click(object sender, RoutedEventArgs e)
+        private void deleteUserOrAdmin(string messageBoxText, string caption)
         {
             CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
-            if (selectedRowObj.role=="USER")
+            switch (messageBoxCreator(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning))
             {
-                string messageBoxText = "Are you sure you want to delete this user?";
-                string caption = "Delete User";
-                MessageBoxButton button = MessageBoxButton.YesNo;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-                switch (msgbox_result)
-                {
-                    case MessageBoxResult.Yes:
-                        using (var client = new HttpClient())
-                        {
-                            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                            var endpoint = new Uri(baseURL + "admin/user/" + selectedRowObj.id.ToString());
-                            var result = client.DeleteAsync(endpoint).Result;
-                        }
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                }
-                using (var client2 = new HttpClient())
-                {
-                    client2.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    var endpoint2 = new Uri(baseURL + "admin/users");
-                    var result2 = client2.GetAsync(endpoint2).Result;
-                    var json2 = result2.Content.ReadAsStringAsync().Result;
+                case MessageBoxResult.Yes:
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                        var endpoint = new Uri(baseURL + "admin/user/" + selectedRowObj.id.ToString());
+                        var result = client.DeleteAsync(endpoint).Result;
 
-                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json2);
-                    dtGrid.ItemsSource = userList;
-                }
+                        if (!result.IsSuccessStatusCode)
+                        {
+                            resultGlobal = result.Content.ReadAsStringAsync().Result;
+                            messageBoxCreator(resultGlobal, "Result", MessageBoxButton.OK, MessageBoxImage.None);
+                        }
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
             }
-            else
-            {
-                string messageBoxText = "Error removing this user.";
-                string caption = "Error";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-            }
+        }
+
+        private object messageBoxCreator(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
+        {
+            var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+            return msgbox_result;
         }
     }
 }

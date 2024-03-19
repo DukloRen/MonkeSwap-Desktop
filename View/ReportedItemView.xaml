@@ -62,13 +62,6 @@
                     <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
                 </Button>
 
-                <Button x:Name="btnMaximize"
-                                Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
-                                Click="btnMaximize_Click">
-                    <fa:IconImage Icon="WindowMaximize" Style="{StaticResource controlButtonIcon}"/>
-                </Button>
-
                 <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource color6}"
