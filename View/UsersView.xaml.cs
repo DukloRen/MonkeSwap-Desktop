@@ -75,7 +75,7 @@ namespace MonkeSwap_Desktop.View
             {
                 deleteUserOrAdmin("Are you sure you want to delete this Admin?", "Delete Admin");
             }
-            loadData();
+            filteredLoadData();
         }
 
         private void loadData()

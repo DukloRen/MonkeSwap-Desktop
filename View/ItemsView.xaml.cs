@@ -27,22 +27,10 @@ namespace MonkeSwap_Desktop.View
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
         private List<ItemData> itemList;
-
         public ItemsView()
         {
             InitializeComponent();
-
-            using (var client = new HttpClient())
-            {
-
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var endpoint = new Uri(baseURL + "admin/items");
-                var result = client.GetAsync(endpoint).Result;
-                var json = result.Content.ReadAsStringAsync().Result;
-
-                itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
-                dtGrid.ItemsSource = itemList;
-            }
+            loadData();
         }
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
@@ -73,13 +61,15 @@ namespace MonkeSwap_Desktop.View
                 dtGrid.ItemsSource = itemList;
             }
         }
-
+        public event EventHandler switchStateButton_Click;
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
             ItemData selectedRowObj = dtGrid.SelectedItem as ItemData;
             long selectedItemID = selectedRowObj.id;
 
             ReportedItemView reportedItem = new ReportedItemView(selectedItemID);
+            reportedItem.Closed += (s, args) => loadData();
+            reportedItem.switchStateButton.Click += (s, args) => loadData();
             reportedItem.Show();
         }
 

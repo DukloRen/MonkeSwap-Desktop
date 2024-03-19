@@ -120,19 +120,6 @@ namespace MonkeSwap_Desktop.View
                 pricetierTxt.Text = "Price tier: " + reportedItem.priceTier;
                 reportsTxt.Text = "Reports: " + reportedItem.reports.Count();
                 userIDTxt.Text = "User ID: " + reportedItem.userID;
-
-                /*ItemsView iv = new ItemsView();
-                iv.loadData();*/
-
-                /*ItemsView iv = new ItemsView();
-                List<ItemData> itemList;
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                endpoint = new Uri(baseURL + "admin/items");
-                result = client.GetAsync(endpoint).Result;
-                json = result.Content.ReadAsStringAsync().Result;
-
-                itemList = JsonConvert.DeserializeObject<List<ItemData>>(json);
-                iv.dtGrid.ItemsSource = itemList;*/
             }
         }
 
