@@ -18,5 +18,6 @@ namespace MonkeSwap_Desktop
         public string email { get; set; }
         public int tradesCompleted { get; set; }
         public string dateOfRegistration { get; set; }
+        public string profilePicture { get; set; }
     }
 }

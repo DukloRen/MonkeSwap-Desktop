@@ -125,13 +125,13 @@
         <Setter Property="Height" Value="16"/>
     </Style>
 
-    <!--Filter Textbox in UsersView-->
+    <!--Filter Textbox in UsersView and ItemsView-->
     <Style x:Key="textboxFilter" TargetType="TextBox">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Gray"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontSize" Value="11"/>
-        <Setter Property="Padding" Value="15,10"/>
+        <Setter Property="Padding" Value="15,8"/>
         <Setter Property="Margin" Value="0,10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Template">
@@ -158,7 +158,41 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <!--Filter Textbox in UsersView and ItemsView-->
+    <Style x:Key="textboxPassword" TargetType="PasswordBox">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="Padding" Value="15,8"/>
+        <Setter Property="Margin" Value="0,10"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border x:Name="border"
+                        CornerRadius="7"
+                        Background="{TemplateBinding Background}"
+                        SnapsToDevicePixels="True"
+                        BorderThickness="1" BorderBrush="#e0e6ed">
+                        <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden"
+                                  VerticalScrollBarVisibility="Hidden"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!-- Generated Templates by Visual Studio (#region DataGrid Style)-->
     <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
@@ -429,6 +463,12 @@
     <!--Removing a button's default design elements-->
     <Style x:Key="noButtonDesignStyleForUserIcon" TargetType="Button">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="40,0,0,0"/>
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="-1"/>
+            </Setter.Value>
+        </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

@@ -98,6 +98,7 @@ namespace MonkeSwap_Desktop.View
                         UserData.role = user.role;
                         UserData.tradesCompleted = user.tradesCompleted;
                         UserData.dateOfRegistration = user.dateOfRegistration;
+                        UserData.profilePicture = user.profilePicture;
 
                         if(user.role=="ADMIN")
                         {

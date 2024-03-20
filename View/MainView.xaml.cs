@@ -31,6 +31,12 @@ namespace MonkeSwap_Desktop.View
             this.MaxHeight=SystemParameters.MaximizedPrimaryScreenHeight;
 
             userNameTopRightCorner.Text = UserData.username;
+
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
+            bitmapImage.EndInit();
+            profilePictureInTopRight.ImageSource = bitmapImage;
         }
 
         [DllImport("user32.dll")]

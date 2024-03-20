@@ -14,5 +14,6 @@ namespace MonkeSwap_Desktop.Model
         public static string role { get; set; }
         public static int tradesCompleted { get; set; }
         public static string dateOfRegistration { get; set; }
+        public static string profilePicture { get; set; }
     }
 }

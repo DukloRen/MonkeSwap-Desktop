@@ -8,7 +8,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         d:DataContext="{d:DesignInstance Type=viewModel:UsersViewModel}"
         mc:Ignorable="d"
-        Title="MainWindowView" Height="700" Width="1300"
+        Title="MainWindowView" Height="750" Width="1350"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
@@ -52,7 +52,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="251"/> <!--If it's set to 250, white tiny lines appear on the right side of the menu-->
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -119,10 +119,11 @@
                     <RadioButton x:Name="settingsRadioButton"
                                  Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color8}"
-                                 Command="{Binding ShowSettingsViewCommand}">
+                                 Command="{Binding ShowSettingsViewCommand}"
+                                 IsEnabled="False">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
+                            <TextBlock Text="Coming soon..." Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
@@ -239,14 +240,14 @@
                                     BorderBrush="Transparent"
                                     Command="{Binding ShowProfileViewCommand}"
                                     Click="profilePictureInTopRightButton_Click"
-                                    Style="{StaticResource noButtonDesignStyleForUserIcon}">
+                                    Style="{StaticResource noButtonDesignStyleForUserIcon}"
+                                    >
                                 <Ellipse Height="35" 
                                          Width="35"
                                          Stroke="{StaticResource titleColor3}"
-                                         StrokeThickness="2"
-                                         Margin="10,0,10,0">
+                                         StrokeThickness="2">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/Images/user_icon.jpg"/>
+                                        <ImageBrush ImageSource="/Images/user_icon.jpg" x:Name="profilePictureInTopRight"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </Button>

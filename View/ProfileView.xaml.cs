@@ -1,8 +1,10 @@
 ﻿using MonkeSwap_Desktop.Model;
+using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Cms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,6 +35,36 @@ namespace MonkeSwap_Desktop.View
             profileDateOfRegistrationTxt.Text = UserData.dateOfRegistration;
             profileRoleTxt.Text = UserData.role;
 
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
+            bitmapImage.EndInit();
+            profileProfilePicture.ImageSource = bitmapImage;
+        }
+
+        private void txtNewPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtNewPasswordTextBlock.Visibility = Visibility.Hidden;
+        }
+
+        private void txtNewPasswordAgain_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            txtNewPasswordAgainTextBlock.Visibility = Visibility.Hidden;
+        }
+        private void txtNewPassword_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (txtNewPassword.Password == "")
+            {
+                txtNewPasswordTextBlock.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void txtNewPasswordAgain_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (txtNewPasswordAgain.Password=="")
+            {
+                txtNewPasswordAgainTextBlock.Visibility = Visibility.Visible;
+            }
         }
     }
 }
