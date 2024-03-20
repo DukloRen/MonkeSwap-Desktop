@@ -25,6 +25,9 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class ProfileView : UserControl
     {
+        private string baseURL = LoginView.baseURL;
+        private string token = CurrentUser.userToken;
+        private static string result_string;
         public ProfileView()
         {
             InitializeComponent();
@@ -58,12 +61,48 @@ namespace MonkeSwap_Desktop.View
                 txtNewPasswordTextBlock.Visibility = Visibility.Visible;
             }
         }
-
         private void txtNewPasswordAgain_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             if (txtNewPasswordAgain.Password=="")
             {
                 txtNewPasswordAgainTextBlock.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void btnChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtNewPassword.Password!=txtNewPasswordAgain.Password)
+            {
+                txtErrorMessage.Text = "The passwords do not match!";
+            }
+            else if (txtNewPassword.Password== "" || txtNewPasswordAgain.Password == "")
+            {
+                txtErrorMessage.Text = "The passwords can not be empty!";
+            }
+            else
+            {
+                using (var client = new HttpClient())
+                {
+                    try
+                    {
+                        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                        var newPostJson = JsonConvert.SerializeObject(new {password = txtNewPassword.Password });
+                        var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                        var result = client.PutAsync(baseURL + "user/password", payload).Result;
+                        result_string = result.Content.ReadAsStringAsync().Result;
+
+                        if (result.IsSuccessStatusCode)
+                        {
+                            LoginView login = new LoginView();
+                            login.Show();
+                            Window.GetWindow(this).Close();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        txtErrorMessage.Text = result_string;
+                    }
+                }
             }
         }
     }
