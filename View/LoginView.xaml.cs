@@ -102,7 +102,7 @@ namespace MonkeSwap_Desktop.View
 
                         if(user.role=="ADMIN")
                         {
-                            MainView main = new MainView();
+                            MainView main = new MainView(user.username);
                             main.Show();
                             Window.GetWindow(this).Close();
                         }

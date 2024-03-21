@@ -25,12 +25,12 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(string userName)
         {
             InitializeComponent();
             this.MaxHeight=SystemParameters.MaximizedPrimaryScreenHeight;
 
-            userNameTopRightCorner.Text = UserData.username;
+            userNameTopRightCorner.Text = userName;
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
@@ -38,8 +38,6 @@ namespace MonkeSwap_Desktop.View
             bitmapImage.EndInit();
             profilePictureInTopRight.ImageSource = bitmapImage;
 
-            ProfileView profileView = new ProfileView();
-            profileView.profileUsernameTxt.IsVisibleChanged += (s, args) => userNameTopRightCorner.Text = UserData.username;
         }
 
         [DllImport("user32.dll")]

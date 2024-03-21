@@ -234,14 +234,17 @@
                      Grid.ColumnSpan="2"
                      Visibility="Hidden"
                      MaxLength="25"/>
+
+                <!--NEM JÓ**************************************************** -->
                 <TextBlock x:Name="txtUsernameErrorMessage"
-                           Text=""
+                           Text="tttttttttttttttttttttttttTB"
                            Foreground="Red"
                            FontSize="12"
                            FontWeight="Bold"
                            FontFamily="Montserrat"
-                           Margin="0,-22,0,0"
+                           Margin="0,-75,30,0"
                            Width="110"
+                           Height="10"
                            TextWrapping="Wrap"
                            Grid.ColumnSpan="2"/>
             </Grid>
