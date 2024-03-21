@@ -94,6 +94,7 @@ namespace MonkeSwap_Desktop.View
                         if (result.IsSuccessStatusCode)
                         {
                             LoginView login = new LoginView();
+                            CurrentUser.userToken = null;
                             login.Show();
                             Window.GetWindow(this).Close();
                         }
@@ -104,6 +105,57 @@ namespace MonkeSwap_Desktop.View
                     }
                 }
             }
+        }
+
+        private void changeUsernameButton_Click(object sender, RoutedEventArgs e)
+        {
+            changeUsernameNecessitiesVisibilityChanger(Visibility.Hidden, Visibility.Visible, Visibility.Visible, Visibility.Visible);
+        }
+
+        private void changeUsernameAcceptButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var newPostJson = JsonConvert.SerializeObject(new { username = changeUsernameTextBox.Text });
+                    var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                    var result = client.PutAsync(baseURL + "user", payload).Result;
+                    result_string = result.Content.ReadAsStringAsync().Result;
+
+                    if (result.IsSuccessStatusCode)
+                    {
+                        UserData.username = changeUsernameTextBox.Text;
+                        profileUsernameTxt.Text = UserData.username;
+                        //MainView mainView = new MainView();
+                        //mainView.userNameTopRightCorner.Text = UserData.username;
+                        changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
+                    }
+                    else
+                    {
+                        txtUsernameErrorMessage.Text = result_string;
+                    }
+                }
+                catch (Exception)
+                {
+                    txtUsernameErrorMessage.Text = result_string;
+                }
+            }
+        }
+
+        private void changeUsernameCancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
+        }
+
+        private void changeUsernameNecessitiesVisibilityChanger(Visibility profileUsernameTxtV, Visibility changeUsernameTextBoxV, Visibility changeUsernameAcceptButtonV, Visibility changeUsernameCancelButtonV)
+        {
+            profileUsernameTxt.Visibility = profileUsernameTxtV;
+            changeUsernameTextBox.Visibility = changeUsernameTextBoxV;
+            changeUsernameAcceptButton.Visibility = changeUsernameAcceptButtonV;
+            changeUsernameCancelButton.Visibility = changeUsernameCancelButtonV;
         }
     }
 }

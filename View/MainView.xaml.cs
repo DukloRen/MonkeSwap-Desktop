@@ -37,6 +37,9 @@ namespace MonkeSwap_Desktop.View
             bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
             bitmapImage.EndInit();
             profilePictureInTopRight.ImageSource = bitmapImage;
+
+            ProfileView profileView = new ProfileView();
+            profileView.profileUsernameTxt.IsVisibleChanged += (s, args) => userNameTopRightCorner.Text = UserData.username;
         }
 
         [DllImport("user32.dll")]
@@ -78,6 +81,7 @@ namespace MonkeSwap_Desktop.View
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginView login = new LoginView();
+            CurrentUser.userToken=null;
             login.Show();
             Window.GetWindow(this).Close();
         }

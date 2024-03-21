@@ -192,12 +192,15 @@
 
         </StackPanel>
 
-        <Grid Width="150"
-            Margin="225,0,0,0"
-            HorizontalAlignment="Left"
-            Grid.Row="1"
-            Grid.Column="0" 
-            Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="2"
+                    VerticalAlignment="Top">
+            <Grid Width="150"
+                  Height="50"
+            Margin="225,33,0,0"
+            HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
@@ -209,12 +212,73 @@
                        FontSize="15"
                        FontWeight="Medium"
                        FontFamily="Montserrat"
-                       Margin="0,35,0,5"
                        TextWrapping="Wrap"
                        Grid.Column="0"
                        />
-            <fa:IconImage Icon="PenToSquare" Style="{StaticResource menuButtonIcon}" Margin="10,35,0,0" VerticalAlignment="Top" Height="18" Grid.Column="1"/>
-        </Grid>
+            <Button x:Name="changeUsernameButton"
+                    Style="{StaticResource noButtonDesignStyle}" 
+                    Grid.Column="1" 
+                    Margin="-150,0,-110,32"
+                    Click="changeUsernameButton_Click">
+                <fa:IconImage Icon="PenToSquare" 
+                              Height="18"
+                              IconFont="Solid"/>
+            </Button>
+                <TextBox x:Name="changeUsernameTextBox"
+                     Style="{StaticResource textboxFilter}"
+                     Margin="0,0,0,25"
+                     Height="25"
+                     Width="150"
+                     Padding="6,3"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Visibility="Hidden"
+                     MaxLength="25"/>
+                <TextBlock x:Name="txtUsernameErrorMessage"
+                           Text=""
+                           Foreground="Red"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           FontFamily="Montserrat"
+                           Margin="0,-22,0,0"
+                           Width="110"
+                           TextWrapping="Wrap"
+                           Grid.ColumnSpan="2"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" 
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Grid.RowSpan="2"
+                    Orientation="Horizontal">
+            
+            <Button x:Name="changeUsernameAcceptButton"
+                    Style="{StaticResource acceptButton}" 
+                    VerticalAlignment="Top"
+                    Margin="35,35,5,32"
+                    Click="changeUsernameAcceptButton_Click"
+                    Width="20"
+                    Height="20"
+                    Visibility="Hidden">
+                <fa:IconImage Icon="Check"
+                              Height="18"                         
+                              />
+            </Button>
+
+            <Button x:Name="changeUsernameCancelButton"
+                    Style="{StaticResource cancelButton}" 
+                    VerticalAlignment="Top"
+                    Margin="0,35,15,32"
+                    Click="changeUsernameCancelButton_Click"
+                    Width="20"
+                    Height="20"
+                    Visibility="Hidden">
+                <fa:IconImage Icon="Xmark"
+                              Height="18"                         
+                              />
+            </Button>
+        </StackPanel>
 
         <StackPanel Width="200"
             Orientation="Vertical"

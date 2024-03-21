@@ -240,7 +240,8 @@
                                     BorderBrush="Transparent"
                                     Command="{Binding ShowProfileViewCommand}"
                                     Click="profilePictureInTopRightButton_Click"
-                                    Style="{StaticResource noButtonDesignStyleForUserIcon}"
+                                    Style="{StaticResource noButtonDesignStyle}"
+                                    Margin="40,0,0,0"
                                     >
                                 <Ellipse Height="35" 
                                          Width="35"
