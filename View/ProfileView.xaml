@@ -35,7 +35,7 @@
          Margin="10,0,10,0"
          VerticalAlignment="Top">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="/Images/user_icon.jpg" x:Name="profileProfilePicture"/>
+                    <ImageBrush x:Name="profileProfilePicture"/>
                 </Ellipse.Fill>
             </Ellipse>
 
@@ -234,21 +234,22 @@
                      Grid.ColumnSpan="2"
                      Visibility="Hidden"
                      MaxLength="25"/>
+            </Grid>
+        </StackPanel>
 
-                <!--NEM JÓ**************************************************** -->
-                <TextBlock x:Name="txtUsernameErrorMessage"
-                           Text="tttttttttttttttttttttttttTB"
+        <TextBlock x:Name="txtUsernameErrorMessage"
+                           Text=""
                            Foreground="Red"
                            FontSize="12"
                            FontWeight="Bold"
                            FontFamily="Montserrat"
-                           Margin="0,-75,30,0"
-                           Width="110"
-                           Height="10"
+                           Margin="65,-395,30,0"
+                           Width="180"
+                           Height="20"
                            TextWrapping="Wrap"
+                           Grid.Row="1"
+                           Grid.RowSpan="2"
                            Grid.ColumnSpan="2"/>
-            </Grid>
-        </StackPanel>
 
         <StackPanel Grid.Column="1" 
                     Grid.ColumnSpan="2"

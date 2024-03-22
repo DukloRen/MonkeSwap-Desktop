@@ -227,14 +227,15 @@
                             </Button>
 
                             <!--Responsive username in the top right corner-->
+                            <!-- {Binding currentUsername} -->
                             <TextBlock x:Name="userNameTopRightCorner"
-                                       Text="{Binding}"
+                                       Text=""
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"
                                        VerticalAlignment="Center"/>
                             
-                            <!--User profile picture (not changeable)-->
+                            <!--User profile picture-->
                             <Button x:Name="profilePictureInTopRightButton" 
                                     Background="Transparent"
                                     BorderBrush="Transparent"
@@ -248,7 +249,7 @@
                                          Stroke="{StaticResource titleColor3}"
                                          StrokeThickness="2">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="/Images/user_icon.jpg" x:Name="profilePictureInTopRight"/>
+                                        <ImageBrush x:Name="profilePictureInTopRight"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </Button>

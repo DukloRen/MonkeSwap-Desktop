@@ -1,22 +1,12 @@
 ﻿using MonkeSwap_Desktop.Model;
 using Newtonsoft.Json;
-using Org.BouncyCastle.Asn1.Cms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -43,6 +33,9 @@ namespace MonkeSwap_Desktop.View
             bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
             bitmapImage.EndInit();
             profileProfilePicture.ImageSource = bitmapImage;
+
+            //UsersViewModel usersV = new UsersViewModel();
+            //changeUsernameAcceptButton.Click += (s, args) => usersV.currentUsername = UserData.username;
         }
 
         private void txtNewPassword_PasswordChanged(object sender, RoutedEventArgs e)
@@ -63,7 +56,7 @@ namespace MonkeSwap_Desktop.View
         }
         private void txtNewPasswordAgain_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (txtNewPasswordAgain.Password=="")
+            if (txtNewPasswordAgain.Password == "")
             {
                 txtNewPasswordAgainTextBlock.Visibility = Visibility.Visible;
             }
@@ -71,11 +64,11 @@ namespace MonkeSwap_Desktop.View
 
         private void btnChangePassword_Click(object sender, RoutedEventArgs e)
         {
-            if (txtNewPassword.Password!=txtNewPasswordAgain.Password)
+            if (txtNewPassword.Password != txtNewPasswordAgain.Password)
             {
                 txtErrorMessage.Text = "The passwords do not match!";
             }
-            else if (txtNewPassword.Password== "" || txtNewPasswordAgain.Password == "")
+            else if (txtNewPassword.Password == "" || txtNewPasswordAgain.Password == "")
             {
                 txtErrorMessage.Text = "The passwords can not be empty!";
             }
@@ -86,7 +79,7 @@ namespace MonkeSwap_Desktop.View
                     try
                     {
                         client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                        var newPostJson = JsonConvert.SerializeObject(new {password = txtNewPassword.Password });
+                        var newPostJson = JsonConvert.SerializeObject(new { password = txtNewPassword.Password });
                         var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                         var result = client.PutAsync(baseURL + "user/password", payload).Result;
                         result_string = result.Content.ReadAsStringAsync().Result;
@@ -129,10 +122,14 @@ namespace MonkeSwap_Desktop.View
                     {
                         UserData.username = changeUsernameTextBox.Text;
                         profileUsernameTxt.Text = UserData.username;
-                        MainView mainView = new MainView(UserData.username);
-                        mainView.userNameTopRightCorner.Text = UserData.username;
                         txtUsernameErrorMessage.Text = "";
                         changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
+
+                        //UsersViewModel usersV = new UsersViewModel();
+                        //usersV.currentUsername = UserData.username;
+
+                        //MainView mv = new MainView();
+                        //mv.userNameTopRightCorner.Text = UserData.username;
                     }
                     else
                     {

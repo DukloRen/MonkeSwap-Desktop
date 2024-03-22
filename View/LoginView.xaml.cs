@@ -1,29 +1,11 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Forms;
-using MessageBox = System.Windows.MessageBox;
-using Application = System.Windows.Application;
-using System.Diagnostics;
-using System.Globalization;
-using System.Net.Http;
-using System.Net;
+﻿using MonkeSwap_Desktop.Model;
 using Newtonsoft.Json;
-using MySqlX.XDevAPI.Common;
-using MonkeSwap_Desktop.Model;
-using Mysqlx.Session;
-using MySqlX.XDevAPI;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Windows;
+using System.Windows.Input;
+using Application = System.Windows.Application;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -92,17 +74,21 @@ namespace MonkeSwap_Desktop.View
                     if (result.IsSuccessStatusCode)
                     {
                         CurrentUser user = JsonConvert.DeserializeObject<CurrentUser>(json);
-                        UserData.id = user.id;
-                        UserData.email = user.email;
-                        UserData.username = user.username;
-                        UserData.role = user.role;
-                        UserData.tradesCompleted = user.tradesCompleted;
-                        UserData.dateOfRegistration = user.dateOfRegistration;
-                        UserData.profilePicture = user.profilePicture;
 
-                        if(user.role=="ADMIN")
+                        if (user.role == "ADMIN")
                         {
-                            MainView main = new MainView(user.username);
+                            UserData.id = user.id;
+                            UserData.email = user.email;
+                            UserData.username = user.username;
+                            UserData.role = user.role;
+                            UserData.tradesCompleted = user.tradesCompleted;
+                            UserData.dateOfRegistration = user.dateOfRegistration;
+                            UserData.profilePicture = user.profilePicture;
+
+                            //UsersViewModel usersV = new UsersViewModel();
+                            //usersV.currentUsername = UserData.username;
+
+                            MainView main = new MainView();
                             main.Show();
                             Window.GetWindow(this).Close();
                         }
@@ -119,4 +105,4 @@ namespace MonkeSwap_Desktop.View
             }
         }
     }
-  }
+}

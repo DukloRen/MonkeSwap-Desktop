@@ -1,11 +1,4 @@
 ﻿using FontAwesome.Sharp;
-using MonkeSwap_Desktop.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace MonkeSwap_Desktop.ViewModel
@@ -18,8 +11,8 @@ namespace MonkeSwap_Desktop.ViewModel
         private string _caption;
         private IconChar _icon;
 
-        public ViewModelBase CurrentChildView 
-        { 
+        public ViewModelBase CurrentChildView
+        {
             get
             {
                 return _currentChildView;
@@ -56,7 +49,7 @@ namespace MonkeSwap_Desktop.ViewModel
         }
 
         //--> Commands
-        public ICommand ShowUsersViewCommand { get;}
+        public ICommand ShowUsersViewCommand { get; }
         public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowItemsViewCommand { get; }
         public ICommand ShowProfileViewCommand { get; }

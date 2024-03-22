@@ -261,9 +261,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\user_icon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\gibbon_raging.jpg" />
   </ItemGroup>
   <ItemGroup>

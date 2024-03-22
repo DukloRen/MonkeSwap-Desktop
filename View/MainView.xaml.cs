@@ -1,22 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using MonkeSwap_Desktop.Model;
+using System;
 using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
-using MonkeSwap_Desktop.ViewModel;
-using FontAwesome.Sharp;
-using MonkeSwap_Desktop.Model;
-using System.Windows.Threading;
+using System.Windows.Media.Imaging;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -25,12 +13,12 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView(string userName)
+        public MainView()
         {
             InitializeComponent();
-            this.MaxHeight=SystemParameters.MaximizedPrimaryScreenHeight;
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            userNameTopRightCorner.Text = userName;
+            userNameTopRightCorner.Text = UserData.username;
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
@@ -66,9 +54,9 @@ namespace MonkeSwap_Desktop.View
 
         private void btnMaximize_Click(object sender, RoutedEventArgs e)
         {
-            if(this.WindowState == WindowState.Normal)
+            if (this.WindowState == WindowState.Normal)
             {
-                this.WindowState=WindowState.Maximized;                
+                this.WindowState = WindowState.Maximized;
             }
             else
             {
@@ -79,7 +67,7 @@ namespace MonkeSwap_Desktop.View
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginView login = new LoginView();
-            CurrentUser.userToken=null;
+            CurrentUser.userToken = null;
             login.Show();
             Window.GetWindow(this).Close();
         }

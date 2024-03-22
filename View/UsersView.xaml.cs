@@ -1,30 +1,9 @@
-﻿using MonkeSwap_Desktop.Model;
-using MonkeSwap_Desktop.ViewModel;
-using MySql.Data.MySqlClient;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -55,7 +34,7 @@ namespace MonkeSwap_Desktop.View
             CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
             if (selectedRowObj.role == "USER")
             {
-                switchRole("ADMIN", "Are you sure you want to promote this User to Admin?", "Promote User");  
+                switchRole("ADMIN", "Are you sure you want to promote this User to Admin?", "Promote User");
             }
             else
             {
@@ -67,7 +46,7 @@ namespace MonkeSwap_Desktop.View
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
-            if (selectedRowObj.role=="USER")
+            if (selectedRowObj.role == "USER")
             {
                 deleteUserOrAdmin("Are you sure you want to delete this user?", "Delete User");
             }
