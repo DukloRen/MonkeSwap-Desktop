@@ -49,13 +49,13 @@
                      TextChanged="txtFilter_TextChanged"/>
 
                 <fa:IconImage Icon="MagnifyingGlass"
-              Style="{StaticResource menuButtonIcon}"
-              Width="15"
-              Height="15"
-              VerticalAlignment="Center"
-              Foreground="#b0b9c6"
-              HorizontalAlignment="Right"
-              Margin="0,0,15,10"/>
+                              Style="{StaticResource menuButtonIcon}"
+                              Width="15"
+                              Height="15"
+                              VerticalAlignment="Center"
+                              Foreground="#b0b9c6"
+                              HorizontalAlignment="Right"
+                              Margin="0,0,15,10"/>
             </Grid>
 
             <!--Items Datagrid-->
@@ -75,13 +75,13 @@
                     <DataGridTextColumn Header="Title" IsReadOnly="True" Width="*" Binding="{Binding title}"/>
                     <DataGridTextColumn Header="State" IsReadOnly="True" Width="*" Binding="{Binding state}"/>
                     <DataGridTextColumn Header="User ID" IsReadOnly="True" Width="*" Binding="{Binding userID}"/>
-                    <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" CanUserResize="False" Binding="{Binding reports.Count}"/>
+                    <DataGridTextColumn Header="Reports" IsReadOnly="True" Width="*" Binding="{Binding reports.Count}"/>
                     <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Style="{StaticResource gridOpenButton}" x:Name="openButton" Click="openButton_Click">
-                                        <fa:IconImage Icon="BookOpen" Style="{StaticResource gridButtonIcon}"/>
+                                        <fa:IconImage Icon="BookOpen" Style="{StaticResource controlButtonIcon}" Width="12" Height="12"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>

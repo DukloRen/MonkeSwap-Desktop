@@ -104,5 +104,15 @@ namespace MonkeSwap_Desktop.View
                 }
             }
         }
+
+        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

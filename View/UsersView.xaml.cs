@@ -15,7 +15,6 @@ namespace MonkeSwap_Desktop.View
         private string baseURL = LoginView.baseURL;
         private string token = CurrentUser.userToken;
         private List<CurrentUser> userList;
-        private string resultGlobal;
 
         public UsersView()
         {
@@ -26,7 +25,7 @@ namespace MonkeSwap_Desktop.View
 
         private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            filteredLoadData();
+            loadData();
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
@@ -40,7 +39,7 @@ namespace MonkeSwap_Desktop.View
             {
                 switchRole("USER", "Are you sure you want to demote this Admin to User?", "Demote Admin");
             }
-            filteredLoadData();
+            loadData();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -54,25 +53,10 @@ namespace MonkeSwap_Desktop.View
             {
                 deleteUserOrAdmin("Are you sure you want to delete this Admin?", "Delete Admin");
             }
-            filteredLoadData();
+            loadData();
         }
 
         private void loadData()
-        {
-            using (var client = new HttpClient())
-            {
-
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                var endpoint = new Uri(baseURL + "admin/users");
-                var result = client.GetAsync(endpoint).Result;
-                var json = result.Content.ReadAsStringAsync().Result;
-
-                userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
-                dtGrid.ItemsSource = userList;
-            }
-        }
-
-        private void filteredLoadData()
         {
             if (txtFilter.Text != "")
             {
@@ -97,7 +81,17 @@ namespace MonkeSwap_Desktop.View
             }
             else
             {
-                loadData();
+                using (var client = new HttpClient())
+                {
+
+                    client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                    var endpoint = new Uri(baseURL + "admin/users");
+                    var result = client.GetAsync(endpoint).Result;
+                    var json = result.Content.ReadAsStringAsync().Result;
+
+                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
+                    dtGrid.ItemsSource = userList;
+                }
             }
         }
 
@@ -114,8 +108,7 @@ namespace MonkeSwap_Desktop.View
                         var result = client.PutAsync(endpoint, new StringContent(notCurrentRole)).Result;
                         if (!result.IsSuccessStatusCode)
                         {
-                            resultGlobal = result.Content.ReadAsStringAsync().Result;
-                            messageBoxCreator(resultGlobal, "Result", MessageBoxButton.OK, MessageBoxImage.None);
+                            messageBoxCreator(result.Content.ReadAsStringAsync().Result, "Result", MessageBoxButton.OK, MessageBoxImage.None);
                         }
                     }
                     break;
@@ -138,8 +131,7 @@ namespace MonkeSwap_Desktop.View
 
                         if (!result.IsSuccessStatusCode)
                         {
-                            resultGlobal = result.Content.ReadAsStringAsync().Result;
-                            messageBoxCreator(resultGlobal, "Result", MessageBoxButton.OK, MessageBoxImage.None);
+                            messageBoxCreator(result.Content.ReadAsStringAsync().Result, "Result", MessageBoxButton.OK, MessageBoxImage.None);
                         }
                     }
                     break;
@@ -150,7 +142,7 @@ namespace MonkeSwap_Desktop.View
 
         private object messageBoxCreator(string messageBoxText, string caption, MessageBoxButton button, MessageBoxImage icon)
         {
-            var msgbox_result = System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+            var msgbox_result = MessageBox.Show(messageBoxText, caption, button, icon);
             return msgbox_result;
         }
     }

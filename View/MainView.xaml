@@ -32,10 +32,6 @@
             <local:ProfileView/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-            <local:SettingsView/>
-        </DataTemplate>
-
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -52,7 +48,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <!--Navigation menu-->
-                <ColumnDefinition Width="251"/> <!--If it's set to 250, white tiny lines appear on the right side of the menu-->
+                <ColumnDefinition Width="251"/> <!--If it's set to 250, tiny white lines appear on the right side of the menu-->
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -218,12 +214,17 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
                             <Button x:Name="logOutButton"
-                                    Style="{StaticResource iconButton}"
+                                    Style="{StaticResource controlButton}"
                                     Tag="{StaticResource color4}"
-                                    Click="logOutButton_Click">
+                                    Click="logOutButton_Click"
+                                    Width="25"
+                                    Background="Transparent"
+                                    Cursor="Hand">
                                 <fa:IconImage Icon="RightFromBracket"
-                                              Style="{StaticResource iconButtonIcon}"
-                                              FlowDirection="LeftToRight"/>
+                                              Style="{StaticResource controlButtonIcon}"
+                                              FlowDirection="LeftToRight"
+                                              Width="16"
+                                              Height="16"/>
                             </Button>
 
                             <!--Responsive username in the top right corner-->

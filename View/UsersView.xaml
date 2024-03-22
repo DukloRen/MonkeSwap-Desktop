@@ -82,10 +82,10 @@
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button Style="{StaticResource gridEditButton}" x:Name="editButton" Click="editButton_Click">
-                                        <fa:IconImage Icon="Exchange" Style="{StaticResource gridButtonIcon}"/>
+                                        <fa:IconImage Icon="Exchange" Style="{StaticResource controlButtonIcon}" Width="12" Height="12"/>
                                     </Button>
-                                    <Button Style="{StaticResource gridRemoveButton}" Margin="5,0,0,0" x:Name="deleteButton" Click="deleteButton_Click">
-                                        <fa:IconImage Icon="Trash" Style="{StaticResource gridButtonIcon}"/>
+                                    <Button Style="{StaticResource gridRemoveButton}" x:Name="deleteButton" Margin="5,0,0,0" Click="deleteButton_Click">
+                                        <fa:IconImage Icon="Trash" Style="{StaticResource controlButtonIcon}" Width="12" Height="12"/>
                                     </Button>
                                 </StackPanel>
                             </DataTemplate>
