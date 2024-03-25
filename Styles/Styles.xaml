@@ -160,7 +160,7 @@
         </Setter>
     </Style>
 
-    <!-- Generated Templates by Visual Studio (#region DataGrid Style)-->
+    <!-- Generated Templates by Visual Studio #region DataGrid Style-->
     <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
     <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
         <Setter Property="Width" Value="8"/>
@@ -361,6 +361,7 @@
     </Style>
     <!-- #endregion DataGrid Style)-->
 
+    <!--Button styles-->
     <Style x:Key="gridEditButton" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource color6}"/>
         <Setter Property="Cursor" Value="Hand"/>
@@ -458,6 +459,21 @@
         <Setter Property="Padding" Value="0,0,0,10"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <!-- TextBlock style for ProfileView-->
+    <Style x:Key="basicTextStyle" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="Margin" Value="0,15,0,5"/>
+    </Style>
+
+    <!-- TextBlock style for ProfileView DarkGray Version-->
+    <Style x:Key="basicTextStyleDarkGray" TargetType="TextBlock" BasedOn="{StaticResource basicTextStyle}">
+        <Setter Property="Text" Value=""/>
+        <Setter Property="Foreground" Value="DarkGray"/>
     </Style>
 
 </ResourceDictionary>

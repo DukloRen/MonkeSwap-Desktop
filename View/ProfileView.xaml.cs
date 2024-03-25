@@ -146,6 +146,7 @@ namespace MonkeSwap_Desktop.View
         private void changeUsernameCancelButton_Click(object sender, RoutedEventArgs e)
         {
             changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
+            txtUsernameErrorMessage.Text = "";
         }
 
         private void changeUsernameNecessitiesVisibilityChanger(Visibility profileUsernameTxtV, Visibility changeUsernameTextBoxV, Visibility changeUsernameAcceptButtonV, Visibility changeUsernameCancelButtonV)

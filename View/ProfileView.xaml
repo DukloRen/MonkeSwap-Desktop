@@ -24,16 +24,17 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+        <!-- Profile Picture -->
         <StackPanel Width="250"
             Orientation="Vertical"
             Margin="30,0,0,0"
             Grid.Row="0"
             Grid.Column="0">
             <Ellipse Height="200" Width="200"
-         Stroke="{StaticResource titleColor3}"
-         StrokeThickness="2"
-         Margin="10,0,10,0"
-         VerticalAlignment="Top">
+                     Stroke="{StaticResource titleColor3}"
+                     StrokeThickness="2"
+                     Margin="10,0,10,0"
+                     VerticalAlignment="Top">
                 <Ellipse.Fill>
                     <ImageBrush x:Name="profileProfilePicture"/>
                 </Ellipse.Fill>
@@ -42,6 +43,7 @@
 
         </StackPanel>
 
+        <!-- Icons -->
         <StackPanel Width="108"
                     Orientation="Vertical"
                     Margin="0,35,0,182"
@@ -55,6 +57,7 @@
             <fa:IconImage Icon="Key" Style="{StaticResource menuButtonIcon}" Margin="0,0,5,0" Foreground="White" Height="15"/>
         </StackPanel>
 
+        <!-- Constant TextBlocks on the left -->
         <StackPanel Width="200"
                     Orientation="Vertical"
                     Margin="70,0,0,0"
@@ -62,53 +65,31 @@
                     Grid.Row="1">
 
             <TextBlock Text="Username:"
-                               Foreground="White"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,35,0,5"
+                       Style="{StaticResource basicTextStyle}"
+                       Margin="0,35,0,5"
                                />
 
             <TextBlock Text="Email Address:"
-                               Foreground="White"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyle}"
                                />
 
             <TextBlock Text="Trades Completed:"
-                               Foreground="White"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyle}"
                                />
 
             <TextBlock Text="Date of Registration:"
-                               Foreground="White"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyle}"
                                />
 
             <TextBlock Text="Role:"
-                               Foreground="White"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyle}"
                                />
 
             <TextBlock Text="Change password"
-                               Foreground="white"
-                               FontSize="15"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyle}"
                                />
 
+            <!-- Things for changing the password -->
             <PasswordBox x:Name="txtNewPassword"
                          Style="{StaticResource textboxPassword}"
                          Margin="0,0,0,11"
@@ -192,6 +173,7 @@
 
         </StackPanel>
 
+        <!-- Things for changing the username -->
         <StackPanel Orientation="Horizontal"
                     Grid.Row="1"
                     Grid.Column="0" 
@@ -207,11 +189,8 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock x:Name="profileUsernameTxt"
-                       Text="test"
-                       Foreground="DarkGray"
-                       FontSize="15"
-                       FontWeight="Medium"
-                       FontFamily="Montserrat"
+                       Style="{StaticResource basicTextStyleDarkGray}"
+                       Margin="0"
                        TextWrapping="Wrap"
                        Grid.Column="0"
                        />
@@ -284,6 +263,7 @@
             </Button>
         </StackPanel>
 
+        <!-- Static TextBlocks on the right -->
         <StackPanel Width="200"
             Orientation="Vertical"
             Margin="225,58,0,0"
@@ -292,40 +272,20 @@
             Grid.Column="0" Grid.ColumnSpan="2">
 
             <TextBlock x:Name="profileEmailTxt"
-                   Text=""
-                   Foreground="DarkGray"
-                   FontSize="15"
-                   FontWeight="Medium"
-                   FontFamily="Montserrat"
-                   Margin="0,15,0,5"
-                   TextWrapping="Wrap"
+                       Style="{StaticResource basicTextStyleDarkGray}"
+                       TextWrapping="Wrap"
                    />
 
             <TextBlock x:Name="profileTradesCompletedTxt"
-                   Text=""
-                   Foreground="DarkGray"
-                   FontSize="15"
-                   FontWeight="Medium"
-                   FontFamily="Montserrat"
-                   Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyleDarkGray}"
                    />
 
             <TextBlock x:Name="profileDateOfRegistrationTxt"        
-                   Text=""
-                   Foreground="DarkGray"
-                   FontSize="15"
-                   FontWeight="Medium"
-                   FontFamily="Montserrat"
-                   Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyleDarkGray}"
                    />
 
             <TextBlock x:Name="profileRoleTxt"        
-                   Text=""
-                   Foreground="DarkGray"
-                   FontSize="15"
-                   FontWeight="Medium"
-                   FontFamily="Montserrat"
-                   Margin="0,15,0,5"
+                       Style="{StaticResource basicTextStyleDarkGray}"
                    />
 
         </StackPanel>
@@ -342,7 +302,7 @@
                        FontWeight="Medium"
                        FontFamily="Montserrat"
                        Width="250"
-                   VerticalAlignment="Bottom"/>
+                       VerticalAlignment="Bottom"/>
 
         </StackPanel>
 

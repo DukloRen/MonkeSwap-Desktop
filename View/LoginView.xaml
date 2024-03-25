@@ -59,7 +59,7 @@
                             Tag="{StaticResource color4}"
                             Click="btnClose_Click"
                             Margin="15,10,0,0">
-                        <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}" Foreground="{StaticResource titleColor3}"/>
+                        <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
                     </Button>
 
                     <Button x:Name="btnMinimize"
@@ -67,7 +67,7 @@
                             Tag="{StaticResource color6}"
                             Click="btnMinimize_Click"
                             Margin="0,10,0,0">
-                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}" Foreground="{StaticResource titleColor3}"/>
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
                     </Button>
 
                     <TextBlock Text="LOG IN"
