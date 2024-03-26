@@ -41,7 +41,7 @@
                           Foreground="Gray"
                           IsHitTestVisible="False"
                           Panel.ZIndex="1"
-                          Text="Search in IDs"
+                          Text="Search by ID"
                           Visibility="{Binding ElementName=txtFilter, Path=Text.IsEmpty, Converter={StaticResource BoolToVis}}"/>
 
                 <TextBox x:Name="txtFilter"
