@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -20,6 +21,8 @@ namespace MonkeSwap_Desktop.View
         private string token = CurrentUser.userToken;
         private string selectedItemIDGlobal;
         private string selectedItemStateGlobal;
+        private string selectedItemTitleGlobal;
+        private long selectedItemUserIDGlobal;
         public ReportedItemView(long selectedItemID)
         {
             InitializeComponent();
@@ -60,10 +63,12 @@ namespace MonkeSwap_Desktop.View
         {
             if (selectedItemStateGlobal == "ENABLED")
             {
+                sendANotification($"Your item titled \"{selectedItemTitleGlobal}\" has been disabled!", "WARNING");
                 switchState("DISABLED");
             }
             else
             {
+                sendANotification($"Your item titled \"{selectedItemTitleGlobal}\" has been re-enabled!", "WARNING");
                 switchState("ENABLED");
             }
             loadSpecificItemData();
@@ -71,6 +76,8 @@ namespace MonkeSwap_Desktop.View
 
         private void removeButton_Click(object sender, RoutedEventArgs e)
         {
+            sendANotification($"Your item titled \"{selectedItemTitleGlobal}\" has been removed due to too many reports!", "WARNING");
+
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
@@ -92,6 +99,8 @@ namespace MonkeSwap_Desktop.View
                 ItemData reportedItem = JsonConvert.DeserializeObject<ItemData>(json);
 
                 selectedItemStateGlobal = reportedItem.state;
+                selectedItemTitleGlobal = reportedItem.title;
+                selectedItemUserIDGlobal = Convert.ToInt64(reportedItem.userID);
 
                 var bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
@@ -118,6 +127,18 @@ namespace MonkeSwap_Desktop.View
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                 var endpoint = new Uri(baseURL + "admin/item/" + selectedItemIDGlobal);
                 var result = client.PutAsync(endpoint, new StringContent(notCurrentItemState)).Result;
+            }
+        }
+
+        private void sendANotification(string message_message, string message_type)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseURL);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+                var newPostJson = JsonConvert.SerializeObject(new { message = message_message, type = message_type, userId = selectedItemUserIDGlobal });
+                var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
+                var result = client.PostAsync("/notification", payload).Result;
             }
         }
     }

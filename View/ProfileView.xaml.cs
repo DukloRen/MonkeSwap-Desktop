@@ -112,10 +112,11 @@ namespace MonkeSwap_Desktop.View
             {
                 try
                 {
+                    client.BaseAddress = new Uri(baseURL);
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     var newPostJson = JsonConvert.SerializeObject(new { username = changeUsernameTextBox.Text });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                    var result = client.PutAsync(baseURL + "user", payload).Result;
+                    var result = client.PutAsync("/user", payload).Result;
                     result_string = result.Content.ReadAsStringAsync().Result;
 
                     if (result.IsSuccessStatusCode)
