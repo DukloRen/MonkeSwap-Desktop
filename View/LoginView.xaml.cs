@@ -66,7 +66,6 @@ namespace MonkeSwap_Desktop.View
                     string token = UserData.userToken;
 
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-                    //var endpoint = new Uri(baseURL + "user");
                     var result = client.GetAsync("user").Result;
                     result_string = result.ToString();
                     var json = result.Content.ReadAsStringAsync().Result;
@@ -77,13 +76,6 @@ namespace MonkeSwap_Desktop.View
 
                         if (user.role == "ADMIN")
                         {
-                            Console.WriteLine(user.id.ToString());
-                            Console.WriteLine(user.email.ToString());
-                            Console.WriteLine(user.username.ToString());
-                            Console.WriteLine(user.role.ToString());
-                            Console.WriteLine(user.tradesCompleted.ToString());
-                            Console.WriteLine(user.dateOfRegistration.ToString());
-                            Console.WriteLine(user.profilePicture.ToString());
                             CurrentUser.id = user.id;
                             CurrentUser.email = user.email;
                             CurrentUser.username = user.username;
