@@ -18,7 +18,7 @@ namespace MonkeSwap_Desktop.View
     public partial class ReportedItemView : Window
     {
         private string baseURL = LoginView.baseURL;
-        private string token = CurrentUser.userToken;
+        private string token = UserData.userToken;
         private string selectedItemIDGlobal;
         private string selectedItemStateGlobal;
         private string selectedItemTitleGlobal;

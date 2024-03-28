@@ -13,8 +13,8 @@ namespace MonkeSwap_Desktop.View
     public partial class UsersView : System.Windows.Controls.UserControl
     {
         private string baseURL = LoginView.baseURL;
-        private string token = CurrentUser.userToken;
-        private List<CurrentUser> userList;
+        private string token = UserData.userToken;
+        private List<UserData> userList;
 
         public UsersView()
         {
@@ -30,7 +30,7 @@ namespace MonkeSwap_Desktop.View
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            UserData selectedRowObj = dtGrid.SelectedItem as UserData;
             if (selectedRowObj.role == "USER")
             {
                 switchRole("ADMIN", "Are you sure you want to promote this User to Admin?", "Promote User");
@@ -44,7 +44,7 @@ namespace MonkeSwap_Desktop.View
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            UserData selectedRowObj = dtGrid.SelectedItem as UserData;
             if (selectedRowObj.role == "USER")
             {
                 deleteUserOrAdmin("Are you sure you want to delete this user?", "Delete User");
@@ -69,8 +69,8 @@ namespace MonkeSwap_Desktop.View
                         var result = client.GetAsync(endpoint).Result;
                         var json = result.Content.ReadAsStringAsync().Result;
 
-                        CurrentUser userFiltered = JsonConvert.DeserializeObject<CurrentUser>(json);
-                        List<CurrentUser> userFilteredList = new List<CurrentUser>() { userFiltered };
+                        UserData userFiltered = JsonConvert.DeserializeObject<UserData>(json);
+                        List<UserData> userFilteredList = new List<UserData>() { userFiltered };
                         dtGrid.ItemsSource = userFilteredList;
                     }
                 }
@@ -89,7 +89,7 @@ namespace MonkeSwap_Desktop.View
                     var result = client.GetAsync(endpoint).Result;
                     var json = result.Content.ReadAsStringAsync().Result;
 
-                    userList = JsonConvert.DeserializeObject<List<CurrentUser>>(json);
+                    userList = JsonConvert.DeserializeObject<List<UserData>>(json);
                     dtGrid.ItemsSource = userList;
                 }
             }
@@ -97,7 +97,7 @@ namespace MonkeSwap_Desktop.View
 
         private void switchRole(string notCurrentRole, string messageBoxText, string caption)
         {
-            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            UserData selectedRowObj = dtGrid.SelectedItem as UserData;
             switch (messageBoxCreator(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning))
             {
                 case MessageBoxResult.Yes:
@@ -119,7 +119,7 @@ namespace MonkeSwap_Desktop.View
 
         private void deleteUserOrAdmin(string messageBoxText, string caption)
         {
-            CurrentUser selectedRowObj = dtGrid.SelectedItem as CurrentUser;
+            UserData selectedRowObj = dtGrid.SelectedItem as UserData;
             switch (messageBoxCreator(messageBoxText, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning))
             {
                 case MessageBoxResult.Yes:

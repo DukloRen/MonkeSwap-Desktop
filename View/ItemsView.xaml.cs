@@ -14,7 +14,7 @@ namespace MonkeSwap_Desktop.View
     public partial class ItemsView : UserControl
     {
         private string baseURL = LoginView.baseURL;
-        private string token = CurrentUser.userToken;
+        private string token = UserData.userToken;
         private List<ItemData> itemList;
         public ItemsView()
         {

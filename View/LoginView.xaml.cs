@@ -52,9 +52,9 @@ namespace MonkeSwap_Desktop.View
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
                     var result = client.PostAsync("auth/login", payload).Result.Content.ReadAsStringAsync().Result;
                     result_string = result;
-                    var token = JsonConvert.DeserializeObject<CurrentUser>(result).token;
+                    var token = JsonConvert.DeserializeObject<UserData>(result).token;
 
-                    CurrentUser.userToken = token;
+                    UserData.userToken = token;
                 }
                 catch (Exception)
                 {
@@ -63,7 +63,7 @@ namespace MonkeSwap_Desktop.View
 
                 try
                 {
-                    string token = CurrentUser.userToken;
+                    string token = UserData.userToken;
 
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     //var endpoint = new Uri(baseURL + "user");
@@ -73,17 +73,24 @@ namespace MonkeSwap_Desktop.View
 
                     if (result.IsSuccessStatusCode)
                     {
-                        CurrentUser user = JsonConvert.DeserializeObject<CurrentUser>(json);
+                        UserData user = JsonConvert.DeserializeObject<UserData>(json);
 
                         if (user.role == "ADMIN")
                         {
-                            UserData.id = user.id;
-                            UserData.email = user.email;
-                            UserData.username = user.username;
-                            UserData.role = user.role;
-                            UserData.tradesCompleted = user.tradesCompleted;
-                            UserData.dateOfRegistration = user.dateOfRegistration;
-                            UserData.profilePicture = user.profilePicture;
+                            Console.WriteLine(user.id.ToString());
+                            Console.WriteLine(user.email.ToString());
+                            Console.WriteLine(user.username.ToString());
+                            Console.WriteLine(user.role.ToString());
+                            Console.WriteLine(user.tradesCompleted.ToString());
+                            Console.WriteLine(user.dateOfRegistration.ToString());
+                            Console.WriteLine(user.profilePicture.ToString());
+                            CurrentUser.id = user.id;
+                            CurrentUser.email = user.email;
+                            CurrentUser.username = user.username;
+                            CurrentUser.role = user.role;
+                            CurrentUser.tradesCompleted = user.tradesCompleted;
+                            CurrentUser.dateOfRegistration = user.dateOfRegistration;
+                            CurrentUser.profilePicture = user.profilePicture;
 
                             //UsersViewModel usersV = new UsersViewModel();
                             //usersV.currentUsername = UserData.username;
@@ -103,16 +110,6 @@ namespace MonkeSwap_Desktop.View
                     txtErrorMessage.Text = ex.Message;
                 }
             }
-        }
-
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void pnlControlBar_MouseEnter(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

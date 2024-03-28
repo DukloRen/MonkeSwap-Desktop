@@ -115,7 +115,6 @@
                     <RadioButton x:Name="settingsRadioButton"
                                  Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color8}"
-                                 Command="{Binding ShowSettingsViewCommand}"
                                  IsEnabled="False">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Tools" Style="{StaticResource menuButtonIcon}"/>
@@ -228,9 +227,9 @@
                             </Button>
 
                             <!--Responsive username in the top right corner-->
-                            <!-- {Binding currentUsername} -->
+                            <!-- {Binding currentUsername} DynamicResource??????????-->
                             <TextBlock x:Name="userNameTopRightCorner"
-                                       Text=""
+                                       Text="{Binding CurrentUser.username}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"

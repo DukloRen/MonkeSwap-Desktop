@@ -37,7 +37,4 @@
     <SolidColorBrush x:Key="panelOverColor" Color="#673400"/>
     <SolidColorBrush x:Key="panelActiveColor" Color="#673400"/>
     
-    <!--Button Colors-->
-    <!--TextBox Colors-->
-    <!--Etc-->
 </ResourceDictionary>

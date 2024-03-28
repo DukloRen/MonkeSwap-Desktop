@@ -52,7 +52,6 @@ namespace MonkeSwap_Desktop.ViewModel
 
         //--> Commands
         public ICommand ShowUsersViewCommand { get; }
-        public ICommand ShowSettingsViewCommand { get; }
         public ICommand ShowItemsViewCommand { get; }
         public ICommand ShowProfileViewCommand { get; }
 
@@ -63,7 +62,6 @@ namespace MonkeSwap_Desktop.ViewModel
             ShowUsersViewCommand = new ViewModelCommand(ExecuteShowUsersViewCommand);
             ShowItemsViewCommand = new ViewModelCommand(ExecuteShowItemsViewCommand);
             ShowProfileViewCommand = new ViewModelCommand(ExecuteShowProfileViewCommand);
-            ShowSettingsViewCommand = new ViewModelCommand(ExecuteShowSettingsViewCommand);
 
             //Default view
             ExecuteShowUsersViewCommand(null);
@@ -88,13 +86,6 @@ namespace MonkeSwap_Desktop.ViewModel
             CurrentChildView = new ProfileViewModel();
             Caption = "Profile";
             Icon = IconChar.UserAlt;
-        }
-
-        private void ExecuteShowSettingsViewCommand(object obj)
-        {
-            CurrentChildView = new SettingsViewModel();
-            Caption = "Settings";
-            Icon = IconChar.Tools;
         }
     }
 }

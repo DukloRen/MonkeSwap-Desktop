@@ -16,21 +16,21 @@ namespace MonkeSwap_Desktop.View
     public partial class ProfileView : UserControl
     {
         private string baseURL = LoginView.baseURL;
-        private string token = CurrentUser.userToken;
+        private string token = UserData.userToken;
         private static string result_string;
         public ProfileView()
         {
             InitializeComponent();
 
-            profileUsernameTxt.Text = UserData.username;
-            profileEmailTxt.Text = UserData.email;
-            profileTradesCompletedTxt.Text = Convert.ToString(UserData.tradesCompleted);
-            profileDateOfRegistrationTxt.Text = UserData.dateOfRegistration;
-            profileRoleTxt.Text = UserData.role;
+            profileUsernameTxt.Text = CurrentUser.username;
+            profileEmailTxt.Text = CurrentUser.email;
+            profileTradesCompletedTxt.Text = Convert.ToString(CurrentUser.tradesCompleted);
+            profileDateOfRegistrationTxt.Text = CurrentUser.dateOfRegistration;
+            profileRoleTxt.Text = CurrentUser.role;
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
+            bitmapImage.UriSource = new Uri(CurrentUser.profilePicture); ;
             bitmapImage.EndInit();
             profileProfilePicture.ImageSource = bitmapImage;
 
@@ -87,7 +87,7 @@ namespace MonkeSwap_Desktop.View
                         if (result.IsSuccessStatusCode)
                         {
                             LoginView login = new LoginView();
-                            CurrentUser.userToken = null;
+                            UserData.userToken = null;
                             login.Show();
                             Window.GetWindow(this).Close();
                         }
@@ -112,17 +112,15 @@ namespace MonkeSwap_Desktop.View
             {
                 try
                 {
-                    client.BaseAddress = new Uri(baseURL);
                     client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
                     var newPostJson = JsonConvert.SerializeObject(new { username = changeUsernameTextBox.Text });
                     var payload = new StringContent(newPostJson, Encoding.UTF8, "application/json");
-                    var result = client.PutAsync("/user", payload).Result;
+                    var result = client.PutAsync(baseURL + "user/username", payload).Result;
                     result_string = result.Content.ReadAsStringAsync().Result;
-
                     if (result.IsSuccessStatusCode)
                     {
-                        UserData.username = changeUsernameTextBox.Text;
-                        profileUsernameTxt.Text = UserData.username;
+                        CurrentUser.username = changeUsernameTextBox.Text;
+                        profileUsernameTxt.Text = CurrentUser.username;
                         txtUsernameErrorMessage.Text = "";
                         changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
 
@@ -130,7 +128,7 @@ namespace MonkeSwap_Desktop.View
                         //usersV.currentUsername = UserData.username;
 
                         //MainView mv = new MainView();
-                        //mv.userNameTopRightCorner.Text = UserData.username;
+                        //mv.userNameTopRightCorner.Text = CurrentUser.username;
                     }
                     else
                     {

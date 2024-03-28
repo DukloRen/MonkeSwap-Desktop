@@ -18,11 +18,11 @@ namespace MonkeSwap_Desktop.View
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            userNameTopRightCorner.Text = UserData.username;
+            userNameTopRightCorner.Text = CurrentUser.username;
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(UserData.profilePicture); ;
+            bitmapImage.UriSource = new Uri(CurrentUser.profilePicture); ;
             bitmapImage.EndInit();
             profilePictureInTopRight.ImageSource = bitmapImage;
 
@@ -67,7 +67,7 @@ namespace MonkeSwap_Desktop.View
         private void logOutButton_Click(object sender, RoutedEventArgs e)
         {
             LoginView login = new LoginView();
-            CurrentUser.userToken = null;
+            UserData.userToken = null;
             login.Show();
             Window.GetWindow(this).Close();
         }
@@ -76,7 +76,6 @@ namespace MonkeSwap_Desktop.View
         {
             usersRadioButton.IsChecked = false;
             itemsRadioButton.IsChecked = false;
-            settingsRadioButton.IsChecked = false;
             profileRadioButton.IsChecked = true;
         }
     }
