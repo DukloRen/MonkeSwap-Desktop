@@ -1,4 +1,5 @@
 ﻿using MonkeSwap_Desktop.Model;
+using MonkeSwap_Desktop.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -30,12 +31,16 @@ namespace MonkeSwap_Desktop.View
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(CurrentUser.profilePicture); ;
+            if (CurrentUser.profilePicture == "")
+            {
+                bitmapImage.UriSource = new Uri("https://i.imgur.com/MonXtG8.jpeg");
+            }
+            else
+            {
+                bitmapImage.UriSource = new Uri(CurrentUser.profilePicture);
+            }
             bitmapImage.EndInit();
             profileProfilePicture.ImageSource = bitmapImage;
-
-            //UsersViewModel usersV = new UsersViewModel();
-            //changeUsernameAcceptButton.Click += (s, args) => usersV.currentUsername = UserData.username;
         }
 
         private void txtNewPassword_PasswordChanged(object sender, RoutedEventArgs e)
@@ -123,6 +128,10 @@ namespace MonkeSwap_Desktop.View
                         profileUsernameTxt.Text = CurrentUser.username;
                         txtUsernameErrorMessage.Text = "";
                         changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
+
+                        ProfileViewModel profileViewModel = new ProfileViewModel();
+                        profileViewModel.RaiseChildEvent();
+                        
 
                         //UsersViewModel usersV = new UsersViewModel();
                         //usersV.currentUsername = UserData.username;

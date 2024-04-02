@@ -22,7 +22,14 @@ namespace MonkeSwap_Desktop.View
 
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri(CurrentUser.profilePicture); ;
+            if (CurrentUser.profilePicture == "")
+            {
+                bitmapImage.UriSource = new Uri("https://i.imgur.com/MonXtG8.jpeg");
+            }
+            else
+            {
+                bitmapImage.UriSource = new Uri(CurrentUser.profilePicture);
+            }
             bitmapImage.EndInit();
             profilePictureInTopRight.ImageSource = bitmapImage;
 

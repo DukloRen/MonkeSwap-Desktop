@@ -1,4 +1,7 @@
 ﻿using FontAwesome.Sharp;
+using MonkeSwap_Desktop.Model;
+using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -7,8 +10,31 @@ namespace MonkeSwap_Desktop.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        //Fields
+        //Username change in the top right corner from profileview
+        private readonly ProfileViewModel _childViewModel;
+        private string username = CurrentUser.username;
 
+        public string Username
+        {
+            get { return username; }
+            set
+            {
+                if (username != value)
+                {
+                    username = value;
+                    OnPropertyChanged(nameof(Message));
+                }
+            }
+        }
+
+        private void ChildViewModel_ChildEventRaised(object sender, EventArgs e)
+        {
+            Username = "Child event raised!";
+        }
+
+
+        //Making updates based on which childview is selected
+        //Fields
         private ViewModelBase _currentChildView;
         private string _caption;
         private IconChar _icon;
@@ -65,6 +91,10 @@ namespace MonkeSwap_Desktop.ViewModel
 
             //Default view
             ExecuteShowUsersViewCommand(null);
+
+            //Initialize profile viewmodel(child) for communication(username change)
+            _childViewModel = new ProfileViewModel();
+            _childViewModel.ChildEventRaised += ChildViewModel_ChildEventRaised;
         }
 
         private void ExecuteShowUsersViewCommand(object obj)

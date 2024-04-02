@@ -12,7 +12,8 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="/Images/monke.ico">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -227,9 +228,9 @@
                             </Button>
 
                             <!--Responsive username in the top right corner-->
-                            <!-- {Binding currentUsername} DynamicResource??????????-->
+                            <!-- {Binding currentUsername}-->
                             <TextBlock x:Name="userNameTopRightCorner"
-                                       Text="{Binding CurrentUser.username}"
+                                       Text="{Binding MainViewModel.username}"
                                        Foreground="{StaticResource titleColor3}"
                                        FontFamily="Montserrat"
                                        FontSize="12"

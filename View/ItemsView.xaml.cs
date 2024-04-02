@@ -50,6 +50,7 @@ namespace MonkeSwap_Desktop.View
                 dtGrid.ItemsSource = itemList;
             }
         }
+
         private void openButton_Click(object sender, RoutedEventArgs e)
         {
             ItemData selectedRowObj = dtGrid.SelectedItem as ItemData;
