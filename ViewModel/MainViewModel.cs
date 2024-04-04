@@ -10,28 +10,6 @@ namespace MonkeSwap_Desktop.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        //Username change in the top right corner from profileview
-        private readonly ProfileViewModel _childViewModel;
-        private string username = CurrentUser.username;
-
-        public string Username
-        {
-            get { return username; }
-            set
-            {
-                if (username != value)
-                {
-                    username = value;
-                    OnPropertyChanged(nameof(Message));
-                }
-            }
-        }
-
-        private void ChildViewModel_ChildEventRaised(object sender, EventArgs e)
-        {
-            Username = "Child event raised!";
-        }
-
 
         //Making updates based on which childview is selected
         //Fields
@@ -91,10 +69,6 @@ namespace MonkeSwap_Desktop.ViewModel
 
             //Default view
             ExecuteShowUsersViewCommand(null);
-
-            //Initialize profile viewmodel(child) for communication(username change)
-            _childViewModel = new ProfileViewModel();
-            _childViewModel.ChildEventRaised += ChildViewModel_ChildEventRaised;
         }
 
         private void ExecuteShowUsersViewCommand(object obj)

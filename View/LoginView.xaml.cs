@@ -84,9 +84,6 @@ namespace MonkeSwap_Desktop.View
                             CurrentUser.dateOfRegistration = user.dateOfRegistration;
                             CurrentUser.profilePicture = user.profilePicture;
 
-                            //UsersViewModel usersV = new UsersViewModel();
-                            //usersV.currentUsername = UserData.username;
-
                             MainView main = new MainView();
                             main.Show();
                             Window.GetWindow(this).Close();

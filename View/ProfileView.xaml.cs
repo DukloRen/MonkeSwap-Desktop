@@ -127,17 +127,7 @@ namespace MonkeSwap_Desktop.View
                         CurrentUser.username = changeUsernameTextBox.Text;
                         profileUsernameTxt.Text = CurrentUser.username;
                         txtUsernameErrorMessage.Text = "";
-                        changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
-
-                        ProfileViewModel profileViewModel = new ProfileViewModel();
-                        profileViewModel.RaiseChildEvent();
-                        
-
-                        //UsersViewModel usersV = new UsersViewModel();
-                        //usersV.currentUsername = UserData.username;
-
-                        //MainView mv = new MainView();
-                        //mv.userNameTopRightCorner.Text = CurrentUser.username;
+                        changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);                        
                     }
                     else
                     {

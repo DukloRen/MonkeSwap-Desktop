@@ -18,8 +18,6 @@ namespace MonkeSwap_Desktop.View
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            userNameTopRightCorner.Text = CurrentUser.username;
-
             var bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();
             if (CurrentUser.profilePicture == "")

@@ -227,15 +227,6 @@
                                               Height="16"/>
                             </Button>
 
-                            <!--Responsive username in the top right corner-->
-                            <!-- {Binding currentUsername}-->
-                            <TextBlock x:Name="userNameTopRightCorner"
-                                       Text="{Binding MainViewModel.username}"
-                                       Foreground="{StaticResource titleColor3}"
-                                       FontFamily="Montserrat"
-                                       FontSize="12"
-                                       VerticalAlignment="Center"/>
-                            
                             <!--User profile picture-->
                             <Button x:Name="profilePictureInTopRightButton" 
                                     Background="Transparent"
