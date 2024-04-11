@@ -8,6 +8,6 @@
         public static string role { get; set; }
         public static int tradesCompleted { get; set; }
         public static string dateOfRegistration { get; set; }
-        public static string profilePicture { get; set; }
+        public static byte[] profilePicture { get; set; }
     }
 }

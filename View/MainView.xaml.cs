@@ -1,5 +1,6 @@
 ﻿using MonkeSwap_Desktop.Model;
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -13,24 +14,35 @@ namespace MonkeSwap_Desktop.View
     /// </summary>
     public partial class MainView : Window
     {
+        public BitmapImage profilePictureSource;
         public MainView()
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            if (CurrentUser.profilePicture == "")
-            {
-                bitmapImage.UriSource = new Uri("https://i.imgur.com/MonXtG8.jpeg");
-            }
-            else
-            {
-                bitmapImage.UriSource = new Uri(CurrentUser.profilePicture);
-            }
-            bitmapImage.EndInit();
-            profilePictureInTopRight.ImageSource = bitmapImage;
+            profilePictureSource = LoadImage(CurrentUser.profilePicture);
+            profilePictureInTopRight.ImageSource = profilePictureSource;
+        }
 
+        //Loading a byte[] picture data and turning it into a BitmapImage
+        public BitmapImage LoadImage(byte[] imageData)
+        {
+            if (imageData == null || imageData.Length == 0) return null;
+            var image = new BitmapImage();
+
+            using (var mem = new MemoryStream(imageData))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+
+            image.Freeze();
+            return image;
         }
 
         [DllImport("user32.dll")]

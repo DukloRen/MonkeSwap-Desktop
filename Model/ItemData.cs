@@ -4,7 +4,7 @@
     {
         public long id { get; set; }
         public string title { get; set; }
-        public string itemPicture { get; set; }
+        public byte[] itemPicture { get; set; }
         public string description { get; set; }
         public int views { get; set; }
         public string state { get; set; }

@@ -10,6 +10,6 @@
         public string email { get; set; }
         public int tradesCompleted { get; set; }
         public string dateOfRegistration { get; set; }
-        public string profilePicture { get; set; }
+        public byte[] profilePicture { get; set; }
     }
 }

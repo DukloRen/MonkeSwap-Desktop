@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media.Imaging;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -102,11 +101,8 @@ namespace MonkeSwap_Desktop.View
                 selectedItemTitleGlobal = reportedItem.title;
                 selectedItemUserIDGlobal = Convert.ToInt64(reportedItem.userID);
 
-                var bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri(reportedItem.itemPicture); ;
-                bitmapImage.EndInit();
-                pic.ImageSource = bitmapImage;
+                MainView mv = new MainView();
+                pic.ImageSource = mv.LoadImage(reportedItem.itemPicture);
 
                 idTxt.Text = "ID: " + reportedItem.id.ToString();
                 titleTxt.Text = reportedItem.title;

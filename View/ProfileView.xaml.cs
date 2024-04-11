@@ -1,5 +1,4 @@
 ﻿using MonkeSwap_Desktop.Model;
-using MonkeSwap_Desktop.ViewModel;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -7,7 +6,6 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 
 namespace MonkeSwap_Desktop.View
 {
@@ -29,18 +27,8 @@ namespace MonkeSwap_Desktop.View
             profileDateOfRegistrationTxt.Text = CurrentUser.dateOfRegistration;
             profileRoleTxt.Text = CurrentUser.role;
 
-            var bitmapImage = new BitmapImage();
-            bitmapImage.BeginInit();
-            if (CurrentUser.profilePicture == "")
-            {
-                bitmapImage.UriSource = new Uri("https://i.imgur.com/MonXtG8.jpeg");
-            }
-            else
-            {
-                bitmapImage.UriSource = new Uri(CurrentUser.profilePicture);
-            }
-            bitmapImage.EndInit();
-            profileProfilePicture.ImageSource = bitmapImage;
+            MainView mainView = new MainView();
+            profileProfilePicture.ImageSource = mainView.profilePictureSource;
         }
 
         private void txtNewPassword_PasswordChanged(object sender, RoutedEventArgs e)
@@ -127,7 +115,7 @@ namespace MonkeSwap_Desktop.View
                         CurrentUser.username = changeUsernameTextBox.Text;
                         profileUsernameTxt.Text = CurrentUser.username;
                         txtUsernameErrorMessage.Text = "";
-                        changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);                        
+                        changeUsernameNecessitiesVisibilityChanger(Visibility.Visible, Visibility.Hidden, Visibility.Hidden, Visibility.Hidden);
                     }
                     else
                     {
