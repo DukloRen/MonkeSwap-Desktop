@@ -288,5 +288,8 @@
   <ItemGroup>
     <Resource Include="Images\monke.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\user_icon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

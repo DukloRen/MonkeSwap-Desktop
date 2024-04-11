@@ -20,8 +20,20 @@ namespace MonkeSwap_Desktop.View
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
 
-            profilePictureSource = LoadImage(CurrentUser.profilePicture);
-            profilePictureInTopRight.ImageSource = profilePictureSource;
+            var bitmapImage = new BitmapImage();
+            if (LoadImage(CurrentUser.profilePicture)==null)
+            {
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri("https://i.imgur.com/MonXtG8.jpeg");
+                bitmapImage.EndInit();
+                profilePictureSource = bitmapImage;
+                profilePictureInTopRight.ImageSource = bitmapImage;
+            }
+            else
+            {
+                profilePictureSource = LoadImage(CurrentUser.profilePicture);
+                profilePictureInTopRight.ImageSource = profilePictureSource;
+            }
         }
 
         //Loading a byte[] picture data and turning it into a BitmapImage
