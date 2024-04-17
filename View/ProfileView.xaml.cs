@@ -61,10 +61,6 @@ namespace MonkeSwap_Desktop.View
             {
                 txtErrorMessage.Text = "The passwords do not match!";
             }
-            else if (txtNewPassword.Password == "" || txtNewPasswordAgain.Password == "")
-            {
-                txtErrorMessage.Text = "The passwords can not be empty!";
-            }
             else
             {
                 using (var client = new HttpClient())
@@ -83,6 +79,10 @@ namespace MonkeSwap_Desktop.View
                             UserData.userToken = null;
                             login.Show();
                             Window.GetWindow(this).Close();
+                        }
+                        else
+                        {
+                            txtErrorMessage.Text = result_string;
                         }
                     }
                     catch (Exception)
